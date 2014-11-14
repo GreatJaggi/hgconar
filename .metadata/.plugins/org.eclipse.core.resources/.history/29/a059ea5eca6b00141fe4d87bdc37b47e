@@ -1,0 +1,11 @@
+package ph.greatjaggi.com;
+
+public class Thread1 {
+	
+	private int count = 1;
+	public void run()	{
+		while(true)	{
+			System.out.println("Frame " + count);
+		}
+	}//run
+}

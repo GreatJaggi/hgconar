@@ -1,0 +1,8 @@
+package ph.greatjaggi.com;
+
+public class UI {
+	public static void main(String []args)	{
+		UI frame = new UI();
+		}
+	}//main
+}

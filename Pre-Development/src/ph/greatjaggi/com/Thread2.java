@@ -1,0 +1,16 @@
+package ph.greatjaggi.com;
+
+public class Thread2 extends Thread {
+
+private int count = 1;
+	
+	public Thread2()	{
+	
+	}//construct
+	
+	public void run()	{
+		while(true)	{
+			System.out.println("2nd Proc " + count++);
+		}
+	}//run
+}

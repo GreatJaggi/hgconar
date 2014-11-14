@@ -1,0 +1,5 @@
+import java.*;
+public class Threads extends Thread{
+
+	Runnable r = new Runnable();
+}
