@@ -1,0 +1,12 @@
+Contour Definition - key for HG_Recog
+Background Subraction - 
+
+Frame Differencing - Involves Delay - var
+after contouring defines the hand again img_proc to remove noises and etc
+and retain the hand for controlling and manipulation
+
+
+Exercise
+	Threaded for image capturing and a non static solution
+	static is only for frame and UI Setting
+	
