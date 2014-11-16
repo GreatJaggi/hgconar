@@ -26,9 +26,10 @@ public class Cap extends JFrame {
 	
 	System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
 	 JFrame frame = new JFrame("A R P T");
-	 Mat webcam_image = new Mat(); 
-	 BufferedImage image; 
+	 Mat webcam_image = new Mat();
 	 VideoCapture capture = new VideoCapture(0);
+	 BufferedImage image; 
+	 
 	 
 	 JLabel con  = new JLabel("");
 	 JLabel con1 = new JLabel("");
@@ -110,33 +111,19 @@ public class Cap extends JFrame {
 		
 	}//main
 	
-	public static BufferedImage matToBufferedImage(Mat matrix) { 
-		int cols = matrix.cols(); 
-		int rows = matrix.rows(); 
-		int elemSize = (int)matrix.elemSize(); 
-		byte[] data = new byte[cols * rows * elemSize]; 
-		int type; 
-		matrix.get(0, 0, data); 
-		switch (matrix.channels()) { 
-			case 1: 
-			type = BufferedImage.TYPE_BYTE_GRAY; 
-			break; 
-			case 3: 
-			type = BufferedImage.TYPE_3BYTE_BGR; 
-			// bgr to rgb 
-			byte b; 
-			for(int i=0; i<data.length; i=i+3) { 
-				b = data[i]; 
-				data[i] = data[i+2]; 
-				data[i+2] = b; 
-			} 
-			break; 
-			default: 
-			return null; 
-		} 
-		BufferedImage image2 = new BufferedImage(cols, rows, type); 
-		image2.getRaster().setDataElements(0, 0, cols, rows, data); 
-		return image2; 
+	public static BufferedImage matToBufferedImage(Mat m) { 
+		int type = BufferedImage.TYPE_BYTE_GRAY;
+        if ( m.channels() > 1 ) {
+            type = BufferedImage.TYPE_3BYTE_BGR;
+        }
+        int bufferSize = m.channels()*m.cols()*m.rows();
+        byte [] b = new byte[bufferSize];
+        m.get(0,0,b); // get all the pixels
+        BufferedImage image = new BufferedImage(m.cols(),m.rows(), type);
+        final byte[] targetPixels = ((DataBufferByte) image.getRaster().getDataBuffer()).getData();
+        System.arraycopy(b, 0, targetPixels, 0, b.length);  
+        return image;
+
 	}//metToBufferedImage
 	
 	

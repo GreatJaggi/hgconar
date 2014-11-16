@@ -1,0 +1,10 @@
+package hgcore.core;
+
+public class FrameFetching extends Thread{
+	
+	public FrameFetching()	{
+	
+	}//construct
+	
+	
+}

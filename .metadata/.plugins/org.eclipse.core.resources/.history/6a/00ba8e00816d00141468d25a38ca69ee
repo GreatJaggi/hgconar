@@ -1,0 +1,33 @@
+package hgcore.core;
+
+import javax.swing.JFrame;
+
+import org.opencv.core.Core;
+
+public class Core extends JFrame{
+	
+	public Core()	{
+		super("Core");
+		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+	}//construct
+	
+	
+	//main must be replaced with a run function after it becomes a Thread
+	public static void main(String []args)	{
+		
+		/*temp UI*/
+		Core frame = new Core();
+		frame.setSize(500,500);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setLocationRelativeTo(null);
+		frame.setVisible(true);
+		
+		/*temp UI*/
+		
+		
+		while(true)	{
+		
+		}//while
+		
+	}//main
+}//class

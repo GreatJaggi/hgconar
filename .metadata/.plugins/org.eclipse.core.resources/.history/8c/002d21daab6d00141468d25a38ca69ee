@@ -1,0 +1,56 @@
+package hgcore.core;
+
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+import org.opencv.core.Core;
+
+public class ScreenCast extends JFrame {
+	private static final long serialVersionUID = 1L;
+	
+	HG_Core core = new HG_Core();
+	JPanel screen;
+	
+	JLabel hey = new JLabel("!#@$#%$!#%");
+	
+	public ScreenCast()	{
+		super("Screen Casting");
+		core.start();
+		
+		screen = new JPanel()	{
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                BufferedImage dimg = core.getImage();
+//                if (dimg instanceof BufferedImage) {
+//                    dimg = (BufferedImage) dimg.getScaledInstance(500, 500, Image.SCALE_SMOOTH);
+//                }
+                
+                g.drawImage(dimg, 0, 0, null);
+                repaint();
+            }
+        };//pane
+        
+        
+        add(screen); screen.setBackground(Color.gray);
+        screen.add(hey);
+        
+        
+	}//construct
+	
+	public static void main(String []args)	{
+		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+		
+		ScreenCast frame = new ScreenCast();
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setSize(500,500);
+		frame.setLocationRelativeTo(null);
+		frame.setVisible(true);
+	}//main
+	
+}//class
