@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.highgui.VideoCapture;
+import org.opencv.imgproc.Imgproc;
 
 public class HG_Core extends Thread{
 	private static final long serialVersionUID = 1L;
@@ -25,6 +26,12 @@ public class HG_Core extends Thread{
 	
 	
 	int count = 1;
+	double ro, go, bo;
+	double[] rgbo;
+	
+	//temp tresholding
+	private double tresh = 50;
+	
 	//main must be replaced with a run function after it becomes a Thread
 	public void run()	{
 		Mat webcam_image = new Mat();
@@ -37,10 +44,35 @@ public class HG_Core extends Thread{
 			System.out.println("Captured Frame Width " + 
 		    webcam_image.width() + " Height " + webcam_image.height());
 			Core.flip(webcam_image, webcam_image, 1); // flip image
-			image = matToBufferedImage(webcam_image);
+			
+			//rgb to grayscale
+			Mat nMz = webcam_image.clone();
+		    Imgproc.cvtColor(webcam_image, nMz, Imgproc.COLOR_BGR2GRAY);
+		     //rgb to grayscale
+			//image = matToBufferedImage(nMz); // grayScale value
+			
+			for (int i = 0; i < webcam_image.rows(); i++)
+				for (int j = 0; j < webcam_image.cols(); j++)	{
+					//perform pixel operation
+					rgbo = webcam_image.get(i, j);
+					int r = 0; if(rgbo[0] > getThresh()) r = 255;
+					int g = 0; if(rgbo[1] > getThresh()) g = 255;
+					int b = 0; if(rgbo[2] > getThresh()) b = 255;
+					webcam_image.put(i, j, new double[]{r, g, b});
+				}//for
+			//end for nested
+			
+			image = matToBufferedImage(webcam_image); // normal BGR Output
 		}//while
-		
 	}//main
+	
+	public void setThresh(double value)	{
+		tresh = value;
+	}//setThresh
+	
+	public double getThresh()	{
+		return tresh;
+	}//get thresh
 	
 	public BufferedImage getImage()	{
 		return image;
