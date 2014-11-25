@@ -1,0 +1,96 @@
+package ph.greatjaggi.com;
+
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferByte;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+import org.opencv.core.Core;
+import org.opencv.core.Mat;
+import org.opencv.highgui.Highgui;
+
+public class CaseStudy	extends JFrame {
+	
+	JPanel pane = new JPanel();
+	
+	public CaseStudy()	{
+		super("Sign Recognition");
+		
+		Mat image = Highgui.imread("images\\sign.png");
+		
+		pane = new JPanel()	{
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.drawImage(matToBufferedImage(image), 0, 0, null);
+            }//paint
+        };//pane
+        
+        int[] row = new int[image.rows()];
+        int[] col = new int[image.cols()];
+        double[] rgbo;
+        
+        for (int i = 0; i < image.rows(); i++)
+        	for (int j = 0; j < image.cols(); j++)	{
+        		row[i] = 0;
+        		col[i] = 0;
+        	}
+       
+        
+        for (int i = 0; i < image.rows(); i++)
+        	for (int j = 0; j < image.cols(); j++)	{
+        		rgbo = image.get(i, j);
+        		if(rgbo[0] < 255 && rgbo[1] < 255 && rgbo[2] < 255)	{
+        			row[i] = row[i + 1];
+        			col[j] = col[j + 1];
+        		}
+        	}
+        
+        for (int i = 0; i < image.rows(); i++)
+        	System.out.print(row[i] +" ");
+        
+        for (int i = 0; i < image.rows(); i++)
+        	System.out.print(col[i] +" ");
+        
+        
+        		
+		
+		add(pane); pane.setBackground(Color.gray);
+		
+		
+	}//construct
+	
+	
+	
+	
+	public static BufferedImage matToBufferedImage(Mat m) { 
+		int type = BufferedImage.TYPE_BYTE_GRAY;
+        if ( m.channels() > 1 ) {
+            type = BufferedImage.TYPE_3BYTE_BGR;
+        }
+        int bufferSize = m.channels()*m.cols()*m.rows();
+        byte [] b = new byte[bufferSize];
+        m.get(0,0,b); // get all the pixels
+        BufferedImage image = new BufferedImage(m.cols(),m.rows(), type);
+        final byte[] targetPixels = ((DataBufferByte) image.getRaster().getDataBuffer()).getData();
+        System.arraycopy(b, 0, targetPixels, 0, b.length);  
+        return image;
+
+	}//metToBufferedImage
+	
+	public static void main(String[] args)	{
+		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+		
+		
+		
+		
+		CaseStudy frame = new CaseStudy();
+		frame.setSize(500,500);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setLocationRelativeTo(null);
+		frame.setVisible(true);
+	}//main
+
+}//class

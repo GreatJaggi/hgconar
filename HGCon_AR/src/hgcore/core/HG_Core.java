@@ -25,9 +25,11 @@ public class HG_Core extends Thread{
 	}//construct
 	
 	
-	int count = 1;
 	double ro, go, bo;
 	double[] rgbo;
+	
+	double[] srcPx;
+	double[] mskPx;
 	
 	//temp tresholding
 	private double tresh = 50;
@@ -36,12 +38,15 @@ public class HG_Core extends Thread{
 	public void run()	{
 		Mat webcam_image = new Mat();
 		VideoCapture capture = new VideoCapture(0);
+				
 		
+		
+		Mat model = new Mat();
+		
+		boolean sing = true;
 		while(true)	{
-			System.out.println("Count " + " " + count++);
 			capture.read(webcam_image);
-			System.out.println("Frame Obtained");
-			System.out.println("Captured Frame Width " + 
+			System.out.println("Frame Captured: Width " + 
 		    webcam_image.width() + " Height " + webcam_image.height());
 			Core.flip(webcam_image, webcam_image, 1); // flip image
 			
@@ -51,18 +56,50 @@ public class HG_Core extends Thread{
 		     //rgb to grayscale
 			//image = matToBufferedImage(nMz); // grayScale value
 			
+		    
+		    //capturing a model image (one time only)
+		    if(sing)	{
+		    	capture.read(model);
+		    	Core.flip(model, model, 1); // flip image
+		    	sing = false;
+		    }
+		    
+		    
+		    
+/****************************************************************************************************
+*                TWO FRAME DIFFERENCING MOTION DETECTION ALGORITHM
+*                                 START
+****************************************************************************************************/
 			for (int i = 0; i < webcam_image.rows(); i++)
 				for (int j = 0; j < webcam_image.cols(); j++)	{
-					//perform pixel operation
-					rgbo = webcam_image.get(i, j);
-					int r = 0; if(rgbo[0] > getThresh()) r = 255;
-					int g = 0; if(rgbo[1] > getThresh()) g = 255;
-					int b = 0; if(rgbo[2] > getThresh()) b = 255;
-					webcam_image.put(i, j, new double[]{r, g, b});
+					srcPx = webcam_image.get(i,j);
+					mskPx = model.get(i,j);
+					double bp = mskPx[0];
+					double gp = mskPx[1];
+					double rp = mskPx[2];
+					double bc = srcPx[0];
+					double gc = srcPx[1];
+					double rc = srcPx[2];
+					if(bc < bp + tresh && bc > bp - tresh)
+						webcam_image.put(i, j, new double[]{0 , 0, 0});
+					else
+						webcam_image.put(i, j, new double[]{255 , 255, 255});
+					
+					
 				}//for
 			//end for nested
 			
+			capture.read(model);
+	    	Core.flip(model, model, 1); // flip image
+/****************************************************************************************************
+ *                TWO FRAME DIFFERENCING MOTION DETECTION ALGORITHM
+ *                                 END
+ ****************************************************************************************************/
+			
+	    	
+	    	
 			image = matToBufferedImage(webcam_image); // normal BGR Output
+			
 		}//while
 	}//main
 	

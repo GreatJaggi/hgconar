@@ -3,4 +3,5 @@
 <fullyQualifiedTypeName name="ph.greatjaggi.com.UI"/>
 <fullyQualifiedTypeName name="javax.swing.JFrame"/>
 <fullyQualifiedTypeName name="java.awt.Color"/>
+<fullyQualifiedTypeName name="org.opencv.imgproc.Imgproc"/>
 </qualifiedTypeNameHistroy>
