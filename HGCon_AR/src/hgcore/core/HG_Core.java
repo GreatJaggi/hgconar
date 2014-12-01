@@ -65,12 +65,12 @@ public class HG_Core extends Thread{
 		    }
 		    
 		    
+		    /****************************************************************************************************
+		    *                NON-ADAPTIVE BACKGROUND SUBTRACITON
+		    *                                 START
+		    ****************************************************************************************************/
 		    
-/****************************************************************************************************
-*                TWO FRAME DIFFERENCING MOTION DETECTION ALGORITHM
-*                                 START
-****************************************************************************************************/
-			for (int i = 0; i < webcam_image.rows(); i++)
+		    for (int i = 0; i < webcam_image.rows(); i++)
 				for (int j = 0; j < webcam_image.cols(); j++)	{
 					srcPx = webcam_image.get(i,j);
 					mskPx = model.get(i,j);
@@ -80,28 +80,61 @@ public class HG_Core extends Thread{
 					double bc = srcPx[0];
 					double gc = srcPx[1];
 					double rc = srcPx[2];
-					if(bc < bp + tresh && bc > bp - tresh)
-						webcam_image.put(i, j, new double[]{0 , 0, 0});
-					else
-						webcam_image.put(i, j, new double[]{255 , 255, 255});
 					
+					double b = Math.abs(bp - bc);
+					double g = Math.abs(gp - gc);
+					double r = Math.abs(rp - rc);
 					
-				}//for
-			//end for nested
-			
-			capture.read(model);
-	    	Core.flip(model, model, 1); // flip image
-/****************************************************************************************************
- *                TWO FRAME DIFFERENCING MOTION DETECTION ALGORITHM
- *                                 END
- ****************************************************************************************************/
-			
-	    	
-	    	
+					// masking
+					if(b < tresh && g < tresh && r < tresh)
+						webcam_image.put(i, j, new double[]{ 0, 0, 0 });
+					else// if(b > tresh && g > tresh && r > tresh)
+						webcam_image.put(i, j, new double[]{ 255, 255, 255 });
+					//masking
+					
+				}//FOR
+		    
+		    /****************************************************************************************************
+			    *                NON-ADAPTIVE BACKGROUND SUBTRACITON
+			    *                                 START
+			****************************************************************************************************/
+		    
+		    //Contour Definition
+		    defineContour(webcam_image, webcam_image);
+		    
+		    
 			image = matToBufferedImage(webcam_image); // normal BGR Output
 			
 		}//while
 	}//main
+	
+	
+	//finding contours using RGB binary input
+	public Mat defineContour( Mat src, Mat dst )	{
+		double[] value;// = new double[]{0, 0, 0};
+		double[] s = new double[]{0, 0, 0}, p1, p2, p3;
+		
+		final int NORTH = 0, SOUTH = 1, EAST = 2, WEST = 3;
+		int orientation = NORTH;
+		for(int i = src.rows() - 1; i > 0; i--)	{
+			for(int j = 0; j < src.cols(); j++)	{
+				value = src.get(i, j);
+				if(value[0] == 255)
+					//dst.put(i, j, s);
+					switch(orientation)	{
+					case NORTH : break;
+					case SOUTH : break;
+					case EAST : break;
+					case WEST : break;
+					}//switch
+			}// for j
+		}//for i
+		
+		return dst;
+	}//defineContour
+	
+	
+	
 	
 	public void setThresh(double value)	{
 		tresh = value;

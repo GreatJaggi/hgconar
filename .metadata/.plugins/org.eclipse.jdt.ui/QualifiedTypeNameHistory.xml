@@ -4,4 +4,7 @@
 <fullyQualifiedTypeName name="javax.swing.JFrame"/>
 <fullyQualifiedTypeName name="java.awt.Color"/>
 <fullyQualifiedTypeName name="org.opencv.imgproc.Imgproc"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="org.opencv.core.Rect"/>
+<fullyQualifiedTypeName name="java.awt.Point"/>
 </qualifiedTypeNameHistroy>
