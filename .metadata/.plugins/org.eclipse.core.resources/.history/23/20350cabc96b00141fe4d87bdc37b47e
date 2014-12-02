@@ -1,7 +1,0 @@
-import java.*;
-public class Threads extends Thread{
-
-	public void run()	{
-	
-	}//run
-}
