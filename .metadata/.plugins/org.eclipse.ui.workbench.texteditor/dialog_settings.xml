@@ -8,11 +8,11 @@
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="r"/>
 			<item value="rgbo"/>
 			<item value="add(screen"/>
 			<item value="NATIVE"/>
 			<item value="core"/>
-			<item value="r"/>
 			<item value="count"/>
 			<item value="coun"/>
 			<item value="image1"/>

@@ -2,11 +2,16 @@ package hgcore.core;
 
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JLabel;
 
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
+import org.opencv.core.MatOfInt;
+import org.opencv.core.MatOfPoint;
+import org.opencv.core.Scalar;
 import org.opencv.highgui.VideoCapture;
 import org.opencv.imgproc.Imgproc;
 
@@ -38,7 +43,7 @@ public class HG_Core extends Thread{
 	public void run()	{
 		Mat webcam_image = new Mat();
 		VideoCapture capture = new VideoCapture(0);
-				
+		Mat ground = new Mat();
 		
 		
 		Mat model = new Mat();
@@ -57,6 +62,9 @@ public class HG_Core extends Thread{
 			//image = matToBufferedImage(nMz); // grayScale value
 			
 		    
+		    Mat normal = webcam_image.clone();
+		    
+		    ground = webcam_image.clone();
 		    //capturing a model image (one time only)
 		    if(sing)	{
 		    	capture.read(model);
@@ -72,7 +80,7 @@ public class HG_Core extends Thread{
 		    
 		    for (int i = 0; i < webcam_image.rows(); i++)
 				for (int j = 0; j < webcam_image.cols(); j++)	{
-					srcPx = webcam_image.get(i,j);
+					srcPx = ground.get(i,j);
 					mskPx = model.get(i,j);
 					double bp = mskPx[0];
 					double gp = mskPx[1];
@@ -87,9 +95,9 @@ public class HG_Core extends Thread{
 					
 					// masking
 					if(b < tresh && g < tresh && r < tresh)
-						webcam_image.put(i, j, new double[]{ 0, 0, 0 });
-					else// if(b > tresh && g > tresh && r > tresh)
-						webcam_image.put(i, j, new double[]{ 255, 255, 255 });
+						ground.put(i, j, new double[]{ 0, 0, 0 });
+					else //if(b > tresh && g > tresh && r > tresh)
+						ground.put(i, j, new double[]{ 255, 255, 255 });
 					//masking
 					
 				}//FOR
@@ -100,40 +108,54 @@ public class HG_Core extends Thread{
 			****************************************************************************************************/
 		    
 		    //Contour Definition
-		    defineContour(webcam_image, webcam_image);
+		    //defineContour(webcam_image, webcam_image);
+		    //Imgproc.cvtColor(webcam_image, webcam_image, Imgproc.COLOR_BGR2GRAY);
+		    
+//		    Mat orig = webcam_image.clone();
+//		    Imgproc.Canny(webcam_image, webcam_image, 1, 100);
+//		    Imgproc.cvtColor(webcam_image, webcam_image, Imgproc.COLOR_GRAY2BGR);
+//		    double[] hld;
+//		    double[] hld2;
+//		    for (int i = 0; i < webcam_image.rows(); i++)
+//				for (int j = 0; j < webcam_image.cols(); j++)	{
+//					hld = webcam_image.get(i, j);
+//					hld2 = orig.get(i, j);
+//					if(hld[0] == 255)
+//						webcam_image.put(i, j, new double[]{0,0,255});
+//					if(hld[0] == 0)
+//						webcam_image.put(i, j, normal.get(i,j));
+//				}//for j
+		    
+		    Imgproc.cvtColor(ground, ground, Imgproc.COLOR_BGR2GRAY);
+		    Imgproc.Canny(ground, ground, 1, 100);
+		    ArrayList<MatOfPoint> contours = new ArrayList<MatOfPoint>();
+		    List<MatOfInt> hull = new ArrayList<MatOfInt>(contours.size());
+		    Mat hierarchy = new Mat();
+		    Imgproc.findContours(ground, contours, hierarchy, Imgproc.RETR_EXTERNAL, Imgproc.CHAIN_APPROX_SIMPLE);
+		    
+		    for(int i = 0; i < contours.size(); i++)
+		    {
+		    	Scalar color = new Scalar(255);
+		    	//drawContours( webcam_image, contours, i, color, 2, 8, hierarchy, 0, Point() );
+		    	//Imgproc.drawContours(webcam_image, contours, i, color);
+		    	Imgproc.drawContours(ground, contours, i, color, 2);
+		    }//for
+		    
+		    Imgproc.cvtColor(ground, ground, Imgproc.COLOR_GRAY2BGR);
+		    double[] hldd;
+		    for (int i = 0; i < webcam_image.rows(); i++)
+				for (int j = 0; j < webcam_image.cols(); j++)	{
+					hldd = ground.get(i,j);
+//					if(hldd[0] == 0)
+//						ground.put(i, j, normal.get(i,j));
+				}
 		    
 		    
-			image = matToBufferedImage(webcam_image); // normal BGR Output
+		    
+			image = matToBufferedImage(ground); // normal BGR Output
 			
 		}//while
 	}//main
-	
-	
-	//finding contours using RGB binary input
-	public Mat defineContour( Mat src, Mat dst )	{
-		double[] value;// = new double[]{0, 0, 0};
-		double[] s = new double[]{0, 0, 0}, p1, p2, p3;
-		
-		final int NORTH = 0, SOUTH = 1, EAST = 2, WEST = 3;
-		int orientation = NORTH;
-		for(int i = src.rows() - 1; i > 0; i--)	{
-			for(int j = 0; j < src.cols(); j++)	{
-				value = src.get(i, j);
-				if(value[0] == 255)
-					//dst.put(i, j, s);
-					switch(orientation)	{
-					case NORTH : break;
-					case SOUTH : break;
-					case EAST : break;
-					case WEST : break;
-					}//switch
-			}// for j
-		}//for i
-		
-		return dst;
-	}//defineContour
-	
-	
 	
 	
 	public void setThresh(double value)	{
