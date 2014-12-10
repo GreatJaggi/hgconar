@@ -8,9 +8,11 @@ import java.util.List;
 import javax.swing.JLabel;
 
 import org.opencv.core.Core;
+import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfInt;
 import org.opencv.core.MatOfPoint;
+import org.opencv.core.Point;
 import org.opencv.core.Scalar;
 import org.opencv.highgui.VideoCapture;
 import org.opencv.imgproc.Imgproc;
@@ -104,7 +106,7 @@ public class HG_Core extends Thread{
 		    
 		    /****************************************************************************************************
 			    *                NON-ADAPTIVE BACKGROUND SUBTRACITON
-			    *                                 START
+			    *                                 END
 			****************************************************************************************************/
 		    
 		    //Contour Definition
@@ -129,26 +131,50 @@ public class HG_Core extends Thread{
 		    Imgproc.cvtColor(ground, ground, Imgproc.COLOR_BGR2GRAY);
 		    Imgproc.Canny(ground, ground, 1, 100);
 		    ArrayList<MatOfPoint> contours = new ArrayList<MatOfPoint>();
-		    List<MatOfInt> hull = new ArrayList<MatOfInt>(contours.size());
+		    
 		    Mat hierarchy = new Mat();
 		    Imgproc.findContours(ground, contours, hierarchy, Imgproc.RETR_EXTERNAL, Imgproc.CHAIN_APPROX_SIMPLE);
+		    
+		    		//MatOfInt hull = new MatOfInt();
+		    		//Imgproc.convexHull(ground, hull, false);
+		    
+//		    MatOfInt mOi= new MatOfInt();
+//		    for(int i = 0; i < contours.size(); i++){
+//		    	Imgproc.convexHull(contours.get(i), mOi); 
+//		        int[] intlist = mOi.toArray();
+//		        List<Point> l = new ArrayList<Point>();
+//		        l.clear();
+//		        for (int j = 0; j < intlist.length; i++) {
+//		                l.add(contours.get(j).toList().get(mOi.toList().get(j)));
+//		            }
+//		    }
+		    List<MatOfInt> hull = new ArrayList<MatOfInt>(contours.size());
+		    for(int i = 0; i < contours.size(); i++)
+		    	hull.add(new MatOfInt());   
+		    
+		    for(int i = 0; i < hull.size(); i++)	{
+		    	hull.set(i, new MatOfInt());
+		    	Imgproc.convexHull(contours.get(i), hull.get(i));	
+		    }//for
+	    	
+	    	
 		    
 		    for(int i = 0; i < contours.size(); i++)
 		    {
 		    	Scalar color = new Scalar(255);
-		    	//drawContours( webcam_image, contours, i, color, 2, 8, hierarchy, 0, Point() );
-		    	//Imgproc.drawContours(webcam_image, contours, i, color);
+		    	Scalar color1 = new Scalar(123);
 		    	Imgproc.drawContours(ground, contours, i, color, 2);
+//		    	Imgproc.drawContours(ground, hls, i, color1, 2);
 		    }//for
 		    
-		    Imgproc.cvtColor(ground, ground, Imgproc.COLOR_GRAY2BGR);
-		    double[] hldd;
-		    for (int i = 0; i < webcam_image.rows(); i++)
-				for (int j = 0; j < webcam_image.cols(); j++)	{
-					hldd = ground.get(i,j);
+//		    Imgproc.cvtColor(ground, ground, Imgproc.COLOR_GRAY2BGR);
+//		    double[] hldd;
+//		    for (int i = 0; i < webcam_image.rows(); i++)
+//				for (int j = 0; j < webcam_image.cols(); j++)	{
+//					hldd = ground.get(i,j);
 //					if(hldd[0] == 0)
 //						ground.put(i, j, normal.get(i,j));
-				}
+//				}
 		    
 		    
 		    
