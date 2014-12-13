@@ -3,17 +3,17 @@ package hgcore.core;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.JLabel;
 
 import org.opencv.core.Core;
-import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfInt;
+import org.opencv.core.MatOfInt4;
 import org.opencv.core.MatOfPoint;
 import org.opencv.core.Point;
 import org.opencv.core.Scalar;
+import org.opencv.core.Size;
 import org.opencv.highgui.VideoCapture;
 import org.opencv.imgproc.Imgproc;
 
@@ -109,25 +109,25 @@ public class HG_Core extends Thread{
 			    *                                 END
 			****************************************************************************************************/
 		    
-		    //Contour Definition
-		    //defineContour(webcam_image, webcam_image);
-		    //Imgproc.cvtColor(webcam_image, webcam_image, Imgproc.COLOR_BGR2GRAY);
-		    
-//		    Mat orig = webcam_image.clone();
-//		    Imgproc.Canny(webcam_image, webcam_image, 1, 100);
-//		    Imgproc.cvtColor(webcam_image, webcam_image, Imgproc.COLOR_GRAY2BGR);
-//		    double[] hld;
-//		    double[] hld2;
-//		    for (int i = 0; i < webcam_image.rows(); i++)
-//				for (int j = 0; j < webcam_image.cols(); j++)	{
-//					hld = webcam_image.get(i, j);
-//					hld2 = orig.get(i, j);
-//					if(hld[0] == 255)
-//						webcam_image.put(i, j, new double[]{0,0,255});
-//					if(hld[0] == 0)
-//						webcam_image.put(i, j, normal.get(i,j));
-//				}//for j
-		    
+		    Imgproc.cvtColor(ground, ground, Imgproc.COLOR_BGR2HSV);
+		    Mat dest = new Mat();
+		    Core.inRange(ground, new Scalar(58,125,0), new Scalar(256,256,256), dest);
+		    Mat erode = Imgproc.getStructuringElement(Imgproc.MORPH_RECT, new Size(3,3));
+	        Mat dilate = Imgproc.getStructuringElement(Imgproc.MORPH_RECT, new Size(5,5));
+	        Imgproc.erode(ground, ground, erode);
+	        Imgproc.erode(ground, ground, erode);
+	        Imgproc.erode(ground, ground, erode);
+	        Imgproc.dilate(ground, ground, dilate);
+	        Imgproc.dilate(ground, ground, dilate);
+	        Imgproc.dilate(ground, ground, dilate);
+	        
+	        
+//	        List<MatOfPoint> contours = new ArrayList<>();
+//
+//	        Imgproc.findContours(dest, contours, new Mat(), Imgproc.RETR_LIST, Imgproc.CHAIN_APPROX_SIMPLE);
+//	        Imgproc.drawContours(dest, contours, -1, new Scalar(255,255,0));
+//		    
+		    //contour definition
 		    Imgproc.cvtColor(ground, ground, Imgproc.COLOR_BGR2GRAY);
 		    Imgproc.Canny(ground, ground, 1, 100);
 		    ArrayList<MatOfPoint> contours = new ArrayList<MatOfPoint>();
@@ -135,46 +135,70 @@ public class HG_Core extends Thread{
 		    Mat hierarchy = new Mat();
 		    Imgproc.findContours(ground, contours, hierarchy, Imgproc.RETR_EXTERNAL, Imgproc.CHAIN_APPROX_SIMPLE);
 		    
-		    		//MatOfInt hull = new MatOfInt();
-		    		//Imgproc.convexHull(ground, hull, false);
-		    
-//		    MatOfInt mOi= new MatOfInt();
-//		    for(int i = 0; i < contours.size(); i++){
-//		    	Imgproc.convexHull(contours.get(i), mOi); 
-//		        int[] intlist = mOi.toArray();
-//		        List<Point> l = new ArrayList<Point>();
-//		        l.clear();
-//		        for (int j = 0; j < intlist.length; i++) {
-//		                l.add(contours.get(j).toList().get(mOi.toList().get(j)));
-//		            }
-//		    }
-		    List<MatOfInt> hull = new ArrayList<MatOfInt>(contours.size());
-		    for(int i = 0; i < contours.size(); i++)
-		    	hull.add(new MatOfInt());   
-		    
-		    for(int i = 0; i < hull.size(); i++)	{
-		    	hull.set(i, new MatOfInt());
-		    	Imgproc.convexHull(contours.get(i), hull.get(i));	
-		    }//for
+		    //convex hull
+		    MatOfInt convexHullMatOfInt = new MatOfInt();
+		    ArrayList<Point> convexHullPointArrayList = new ArrayList<Point>();
+		    MatOfPoint convexHullMatOfPoint = new MatOfPoint();
+		    ArrayList<MatOfPoint> convexHullMatOfPointArrayList = new ArrayList<MatOfPoint>();
+
+		    try {
+		        //Calculate convex hulls
+		        if(contours.size() > 0)
+		        {
+		            Imgproc.convexHull( contours.get(0), convexHullMatOfInt, false);
+
+		            for(int j=0; j < convexHullMatOfInt.toList().size(); j++)
+		                convexHullPointArrayList.add(contours.get(0).toList().get(convexHullMatOfInt.toList().get(j)));
+		            convexHullMatOfPoint.fromList(convexHullPointArrayList);
+		            convexHullMatOfPointArrayList.add(convexHullMatOfPoint);    
+		        }
+		    } catch (Exception e) {
+		        // TODO Auto-generated catch block
+		        System.out.println("Calculate convex hulls failed. Details below");
+		        e.printStackTrace();
+		    }
 	    	
 	    	
 		    
+		    //draw contour
 		    for(int i = 0; i < contours.size(); i++)
 		    {
 		    	Scalar color = new Scalar(255);
-		    	Scalar color1 = new Scalar(123);
 		    	Imgproc.drawContours(ground, contours, i, color, 2);
-//		    	Imgproc.drawContours(ground, hls, i, color1, 2);
 		    }//for
 		    
-//		    Imgproc.cvtColor(ground, ground, Imgproc.COLOR_GRAY2BGR);
-//		    double[] hldd;
-//		    for (int i = 0; i < webcam_image.rows(); i++)
-//				for (int j = 0; j < webcam_image.cols(); j++)	{
-//					hldd = ground.get(i,j);
-//					if(hldd[0] == 0)
-//						ground.put(i, j, normal.get(i,j));
-//				}
+		    for(int i = 0; i < convexHullMatOfPointArrayList.size(); i++)	{
+		    	Scalar color1 = new Scalar(123);
+		    	Imgproc.drawContours(ground, convexHullMatOfPointArrayList, i, color1, 5);
+		    }
+		    
+		    //contour convex hull
+		    
+		    
+//		    MatOfInt4 mConvexityDefectsMatOfInt4 = new MatOfInt4();
+//
+//		    try {
+//		        Imgproc.convexityDefects(contours.get(0), convexHullMatOfInt, mConvexityDefectsMatOfInt4);
+//
+//		        if(!mConvexityDefectsMatOfInt4.empty())
+//		        {
+//		            int[] mConvexityDefectsIntArrayList = new int[mConvexityDefectsMatOfInt4.toArray().length];
+//		            mConvexityDefectsIntArrayList = mConvexityDefectsMatOfInt4.toArray();
+//		        }
+//		    } catch (Exception e) {
+//		        e.printStackTrace();
+//		    }
+		    
+		    
+		    //reveal true image
+		    Imgproc.cvtColor(ground, ground, Imgproc.COLOR_GRAY2BGR);
+		    double[] hldd;
+		    for (int i = 0; i < webcam_image.rows(); i++)
+				for (int j = 0; j < webcam_image.cols(); j++)	{
+					hldd = ground.get(i,j);
+					if(hldd[0] == 0)
+						ground.put(i, j, normal.get(i,j));
+				}
 		    
 		    
 		    
