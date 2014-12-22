@@ -1,0 +1,12 @@
+package hgcore.core;
+
+public class AR_Cast {
+	
+	public AR_Cast()	{
+		
+	}//construct
+	
+	public static void main(String []args)	{
+		
+	}//main
+}//class
