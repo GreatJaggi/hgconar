@@ -5,6 +5,7 @@ import java.awt.image.DataBufferByte;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 
@@ -12,6 +13,7 @@ import org.opencv.core.Core;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfInt;
+import org.opencv.core.MatOfInt4;
 import org.opencv.core.MatOfPoint;
 import org.opencv.core.Point;
 import org.opencv.core.Scalar;
@@ -169,9 +171,12 @@ public class HG_Core extends Thread{
 		    
 		    
 		    for(int i = 0; i < convexHullMatOfPointArrayList.size(); i++)	{
-		    	Scalar color1 = new Scalar(123);
-		    	Imgproc.drawContours(ground, convexHullMatOfPointArrayList, i, color1, 3);
+		    	Scalar color1 = new Scalar(255);
+		    	Imgproc.drawContours(ground, convexHullMatOfPointArrayList, i, color1, 1);
 		    }
+		    
+		    
+		    
 		    
 	    
 		    //grab obCast
