@@ -42,11 +42,28 @@ public class HG_Core extends Thread{
 	private boolean flip = true;
 	
 	
+	private static final int MIN_FINGER_DEPTH = 20;
+	private static final int MAX_FINGER_ANGLE = 60;   // degrees
+	
+	private ArrayList<Point> defectPoints = new ArrayList<Point>();
+	private ArrayList<Point> fingerTips = new ArrayList<Point>();
+	// defects data for the hand contour
+//	 Point[] tipPts, foldPts;   
+//	 float[] depths;
+	 
+	 ArrayList<Point> startPoints = new ArrayList<Point>();
+	 ArrayList<Point> endPoints = new ArrayList<Point>();
+	 ArrayList<Point> depthPoints = new ArrayList<Point>();
+	 
+	 int xCog = 0, yCog = 0;
+	
+	
 	//main must be replaced with a run function after it becomes a Thread
 	public void run()	{
-		Mat webcam_image = new Mat();
+		Mat webcam_image = new Mat(); // normal image
+		Mat ground = new Mat(); // converted image
 		VideoCapture capture = new VideoCapture(0);
-		Mat ground = new Mat();
+		
 		
 		//temporary holder for cast objects
 		BufferedImage img = null;
@@ -154,13 +171,13 @@ public class HG_Core extends Thread{
 		    //this makes the whole program delayed
 		    //reveal true image
 //		    Imgproc.cvtColor(ground, ground, Imgproc.COLOR_GRAY2BGR);
-		    double[] hldd;
-		    for (int i = 0; i < webcam_image.rows(); i++)
-				for (int j = 0; j < webcam_image.cols(); j++)	{
-					hldd = ground.get(i,j);
-					if(hldd[0] == 0)
-						ground.put(i, j, webcam_image.get(i,j));
-				}
+//		    double[] hldd;
+//		    for (int i = 0; i < webcam_image.rows(); i++)
+//				for (int j = 0; j < webcam_image.cols(); j++)	{
+//					hldd = ground.get(i,j);
+//					if(hldd[0] == 0)
+//						ground.put(i, j, webcam_image.get(i,j));
+//				}
 		    
 		    /************************************************************
 		     * *********************** DRAWING **************************
@@ -168,11 +185,27 @@ public class HG_Core extends Thread{
 		    //contour
 		    ground = drawCG(ground, contours, new Scalar(0,0,255), 1);
 		    
+		    
+		    //center of mass
+//		    List<Moments> mu = new ArrayList<Moments>(contours.size());
+//		    for (int i = 0; i < contours.size(); i++) {
+//		        mu.add(i, Imgproc.moments(contours.get(i), false));
+//		        Moments p = mu.get(i);
+//		        int x = (int) (p.get_m10() / p.get_m00());
+//		        int y = (int) (p.get_m01() / p.get_m00());
+//		        Core.circle(ground, new Point(x, y), 7, new Scalar(255,49,0,255), -1);
+//		    }
+		    
 		    //convex hull
 		    ground = drawCG(ground, convexHullMatOfPointArrayList, new Scalar(0,255,255), 1);
 		    
 		    //bounding box
 		    ground = boundBox(convexHullMatOfPointArrayList, ground);
+		    
+		    getDefects();
+		    
+		    ground = drawDefects(ground);
+		    
 		    
 
 		    
@@ -226,6 +259,10 @@ public class HG_Core extends Thread{
 	        //Calculate convex hulls
 	        if(contours.size() > 0)	{
 	            Imgproc.convexHull( contours.get(0), convexHullMatOfInt, false);
+	            
+	            startPoints.clear();
+				endPoints.clear();
+				depthPoints.clear();
 
 	            for(int j=0; j < convexHullMatOfInt.toList().size(); j++)
 	                convexHullPointArrayList.add(contours.get(0).toList().get(convexHullMatOfInt.toList().get(j)));
@@ -249,14 +286,36 @@ public class HG_Core extends Thread{
 					depth_point = list_DefectsList.get(i+2);
 					farthest = list_DefectsList.get(i+3);
 					
-					Core.circle(src, new Point(contours.get(0).get(start, 0)[0],contours.get(0).get(start, 0)[1]), 3, new Scalar(255,0,255), -1);
+//					Core.line(src, new Point(contours.get(0).get(start, 0)[0],contours.get(0).get(start, 0)[1]) , 
+//							new Point(contours.get(0).get(depth_point, 0)[0],contours.get(0).get(depth_point, 0)[1]), new Scalar(255), 2);
+					
+					
+					//Core.circle(src, new Point(contours.get(0).get(depth_point, 0)[0],contours.get(0).get(depth_point, 0)[1]), 3, new Scalar(255,0,255), -1);
+//					Core.circle(src,//mat source
+//							new Point((int)Math.round(contours.get(0).get(end, 0)[0]) , (int)Math.round(contours.get(0).get(end, 0)[1])), //point 
+//							3, //radius
+//							new Scalar(255), // scalar color 
+//							-1); //isFilled or not I guess but tha's how it works from 1 || -1
 //					Core.circle(ground, new Point(contours.get(0).get(end, 0)[0],contours.get(0).get(end, 0)[1]), 3, new Scalar(123,0,255), -1);
 					
 					//System.out.println(depth_point);
 					//System.out.println(farthest);
 					//System.out.println(list_DefectsList.size());
+//					System.out.println("Total number of occurances: " + list_DefectsList.size());
+					Point endPt = new Point((int)Math.round(contours.get(0).get(end, 0)[0]) , (int)Math.round(contours.get(0).get(end, 0)[1])); //point
+					Point startPt = new Point((int)Math.round(contours.get(0).get(start, 0)[0]) , (int)Math.round(contours.get(0).get(start, 0)[1])); //point
+					Point depthPt = new Point((int)Math.round(contours.get(0).get(depth_point, 0)[0]) , (int)Math.round(contours.get(0).get(depth_point, 0)[1])); //point
 					
+//					int angle = angleBetween(endPt, endPt, depthPt);
+//					if (angle >= MAX_FINGER_ANGLE)
+//						System.out.println("he");
+//					else	{
+						endPoints.add(endPt);
+						startPoints.add(startPt);
+						depthPoints.add(depthPt);
+//					}//else
 				}//for
+				
 	        }//if
 	    } catch (Exception e) {
 	        // TODO Auto-generated catch block
@@ -266,6 +325,85 @@ public class HG_Core extends Thread{
 		
 		return src;
 	}//CVHandRed
+	
+	
+	private void getDefects()	{
+		double distance = 0f;
+		boolean ins = false;
+		defectPoints.clear();
+		for(int i = 0; i < endPoints.size(); i++)	{
+			ins = false;
+			if(i > 0 )	{
+				double x1, x2, y1, y2;
+				x1 = endPoints.get(i).x;
+				y1 = endPoints.get(i).y;
+				x2 = endPoints.get(i-1).x;
+				y2 = endPoints.get(i-1).y;
+				distance = Math.sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2));
+				
+			}//if
+			
+			if(distance > 10)	{
+//				Core.circle(src, endPoints.get(i), 6, new Scalar(255), 3);
+				ins = true;
+				defectPoints.add(endPoints.get(i));
+			}
+			
+//			System.out.println("Distance: " + distance + " In: " + ins);
+		}//for
+		
+//		return src;
+	}//DEFECTS
+	
+	private Mat drawDefects(Mat src)	{
+//		System.out.println("Fingers: " + defectPoints.size());
+		int height = src.height() - 2;
+		int width = src.width() - 2;
+		if(defectPoints.size() <= 7)
+		for(int i = 0; i < defectPoints.size(); i++)	{
+			if(defectPoints.get(i).y < height && defectPoints.get(i).x < width)	{
+			System.out.println(defectPoints.get(i).y + " and " + height);
+				Core.circle(src, defectPoints.get(i), 6, new Scalar(123,0,242), 3);
+				Core.line(src, new Point(xCog, yCog), defectPoints.get(i), new Scalar(123,253,23), 1);
+			}//if
+		}//for
+		return src;
+	}//drawDefects
+
+
+	private void reduceTips(int numPoints, ArrayList<Point> tpPts,
+			ArrayList<Point> fldPts, ArrayList<Float> dpths)
+	{
+	  defectPoints.clear();
+
+	  for (int i=0; i < numPoints; i++) {
+	    if (dpths.get(i) < MIN_FINGER_DEPTH)    // defect too shallow
+	      continue;
+
+	    // look at fold points on either side of a tip
+	    int pdx = (i == 0) ? (numPoints-1) : (i - 1); // predecessor of i
+	    int sdx = (i == numPoints-1) ? 0 : (i + 1);   // successor of i
+
+	    
+	    int angle = angleBetween(tpPts.get(i), fldPts.get(pdx), fldPts.get(sdx));
+	    if (angle >= MAX_FINGER_ANGLE)    
+	      continue;      // angle between finger and folds too wide
+
+	    // this point is probably a fingertip, so add to list
+	    defectPoints.add(tpPts.get(i));
+//	    return fngrTips;
+	  }
+	}  // end of reduceTips()
+	
+	private int angleBetween(Point tip, Point next, Point prev)
+	// calculate the angle between the tip and its neighboring folds
+	// (in integer degrees)
+	{
+	  return Math.abs( (int)Math.round(
+	            Math.toDegrees(
+	                  Math.atan2(next.x - tip.x, next.y - tip.y) -
+	                  Math.atan2(prev.x - tip.x, prev.y - tip.y)) ));
+	}
 	
 	public Mat boundBox(ArrayList<MatOfPoint> srcMopList, Mat srcImg)	{
 		MatOfPoint2f approxCurve = new MatOfPoint2f();
@@ -281,7 +419,15 @@ public class HG_Core extends Thread{
 	        Rect rect = Imgproc.boundingRect(points);
 
 	        Core.rectangle(srcImg, new Point(rect.x,rect.y), new Point(rect.x+rect.width,rect.y+rect.height), new Scalar(0,255,0), 1);
-	        Core.circle(srcImg, new Point(rect.x + +rect.width /2 , rect.y+ rect.height /2), 10, new Scalar(255,0,0), 1);
+	        
+	        //middle of the rect 
+	        Core.circle(srcImg, new Point(rect.x + +rect.width /2 , rect.y+ rect.height /2), 10, new Scalar(255,0,0), 2);
+	        
+//	        Core.line(srcImg, new Point(rect.x + rect.width /2, rect.y+ rect.height /2), 
+//	        		new Point(rect.x + rect.width / 2, rect.y), new Scalar(255,255,0), 2);
+	        
+	        xCog = rect.x + rect.width /2;
+	        yCog = rect.y + rect.height /2;
 	    }
 	    return srcImg;
 	}//boundBox

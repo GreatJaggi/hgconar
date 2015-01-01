@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="ASCII"?>
 <application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:advanced="http://www.eclipse.org/ui/2010/UIModel/application/ui/advanced" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_Dt9h0JNDEeSrP9lQWXbpxA" elementId="org.eclipse.e4.legacy.ide.application" contributorURI="platform:/plugin/org.eclipse.platform" selectedElement="_Dt9h0ZNDEeSrP9lQWXbpxA" bindingContexts="_Dt9h05NDEeSrP9lQWXbpxA">
-  <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;workbench>&#xD;&#xA;&lt;mruList>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.jdt.ui.ClassFileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.ClassFileEditor&quot; name=&quot;Core.class&quot; tooltip=&quot;org.opencv.core.Core&quot;>&#xD;&#xA;&lt;persistable org.eclipse.jdt.ui.ClassFileIdentifier=&quot;=HGCon_AR/C:\/eclipse\/Libraries\/opencv\/build\/java\/opencv-249.jar&amp;lt;org.opencv.core(Core.class&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;ScreenCast.java&quot; tooltip=&quot;HGCon_AR/src/hgcore/core/ScreenCast.java&quot;>&#xD;&#xA;&lt;persistable path=&quot;/HGCon_AR/src/hgcore/core/ScreenCast.java&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.jdt.ui.ClassFileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.ClassFileEditor&quot; name=&quot;Imgproc.class&quot; tooltip=&quot;org.opencv.imgproc.Imgproc&quot;>&#xD;&#xA;&lt;persistable org.eclipse.jdt.ui.ClassFileIdentifier=&quot;=HGCon_AR/C:\/eclipse\/Libraries\/opencv\/build\/java\/opencv-249.jar&amp;lt;org.opencv.imgproc(Imgproc.class&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;HG_Core.java&quot; tooltip=&quot;HGCon_AR/src/hgcore/core/HG_Core.java&quot;>&#xD;&#xA;&lt;persistable path=&quot;/HGCon_AR/src/hgcore/core/HG_Core.java&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;/mruList>&#xD;&#xA;&lt;/workbench>"/>
+  <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;workbench>&#xD;&#xA;&lt;mruList>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;HG_Core.java&quot; tooltip=&quot;HGCon_AR/src/hgcore/core/HG_Core.java&quot;>&#xD;&#xA;&lt;persistable path=&quot;/HGCon_AR/src/hgcore/core/HG_Core.java&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;HandDetector.java&quot; tooltip=&quot;Pre-Development/src/HandDetector.java&quot;>&#xD;&#xA;&lt;persistable path=&quot;/Pre-Development/src/HandDetector.java&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.jdt.ui.ClassFileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.ClassFileEditor&quot; name=&quot;Core.class&quot; tooltip=&quot;org.opencv.core.Core&quot;>&#xD;&#xA;&lt;persistable org.eclipse.jdt.ui.ClassFileIdentifier=&quot;=HGCon_AR/C:\/eclipse\/Libraries\/opencv\/build\/java\/opencv-249.jar&amp;lt;org.opencv.core(Core.class&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;ScreenCast.java&quot; tooltip=&quot;HGCon_AR/src/hgcore/core/ScreenCast.java&quot;>&#xD;&#xA;&lt;persistable path=&quot;/HGCon_AR/src/hgcore/core/ScreenCast.java&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.jdt.ui.ClassFileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.ClassFileEditor&quot; name=&quot;Imgproc.class&quot; tooltip=&quot;org.opencv.imgproc.Imgproc&quot;>&#xD;&#xA;&lt;persistable org.eclipse.jdt.ui.ClassFileIdentifier=&quot;=HGCon_AR/C:\/eclipse\/Libraries\/opencv\/build\/java\/opencv-249.jar&amp;lt;org.opencv.imgproc(Imgproc.class&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;/mruList>&#xD;&#xA;&lt;/workbench>"/>
   <tags>activeSchemeId:org.eclipse.ui.defaultAcceleratorConfiguration</tags>
   <tags>ModelMigrationProcessor.001</tags>
-  <children xsi:type="basic:TrimmedWindow" xmi:id="_Dt9h0ZNDEeSrP9lQWXbpxA" elementId="IDEWindow" contributorURI="platform:/plugin/org.eclipse.platform" selectedElement="_FFeuYpNDEeSrP9lQWXbpxA" label="%trimmedwindow.label.eclipseSDK" x="75" y="75" width="1024" height="768">
+  <children xsi:type="basic:TrimmedWindow" xmi:id="_Dt9h0ZNDEeSrP9lQWXbpxA" elementId="IDEWindow" contributorURI="platform:/plugin/org.eclipse.platform" selectedElement="_FFeuYpNDEeSrP9lQWXbpxA" label="%trimmedwindow.label.eclipseSDK" x="0" y="0" width="1024" height="768">
     <persistedState key="coolBarVisible" value="false"/>
     <persistedState key="perspectiveBarVisible" value="false"/>
     <persistedState key="workingSets" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;workingSets/>"/>
@@ -68,7 +68,7 @@
           <tags>persp.newWizSC:org.eclipse.m2e.core.wizards.Maven2ProjectWizard</tags>
           <tags>persp.actionSet:org.eclipse.wst.ws.explorer.explorer</tags>
           <children xsi:type="basic:PartSashContainer" xmi:id="_F4WVwJNDEeSrP9lQWXbpxA" selectedElement="_F4WVxpNDEeSrP9lQWXbpxA" horizontal="true">
-            <children xsi:type="basic:PartStack" xmi:id="_F4WVwZNDEeSrP9lQWXbpxA" elementId="topLeft" containerData="1892" selectedElement="_F4WVxJNDEeSrP9lQWXbpxA">
+            <children xsi:type="basic:PartStack" xmi:id="_F4WVwZNDEeSrP9lQWXbpxA" elementId="topLeft" containerData="1892" selectedElement="_F4WVwpNDEeSrP9lQWXbpxA">
               <tags>newtablook</tags>
               <children xsi:type="advanced:Placeholder" xmi:id="_F4WVwpNDEeSrP9lQWXbpxA" elementId="org.eclipse.ui.navigator.ProjectExplorer" ref="_F0GH4JNDEeSrP9lQWXbpxA"/>
               <children xsi:type="advanced:Placeholder" xmi:id="_F4WVw5NDEeSrP9lQWXbpxA" elementId="org.eclipse.ui.views.ResourceNavigator" toBeRendered="false" ref="_F0KZUJNDEeSrP9lQWXbpxA"/>
@@ -130,7 +130,7 @@
         <tags>EditorStack</tags>
         <tags>active</tags>
         <children xsi:type="basic:Part" xmi:id="_U7wDgJNDEeSrP9lQWXbpxA" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="HG_Core.java" iconURI="platform:/plugin/org.eclipse.jdt.ui/icons/full/obj16/jcu_obj.gif" closeable="true">
-          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;HG_Core.java&quot; partName=&quot;HG_Core.java&quot; title=&quot;HG_Core.java&quot; tooltip=&quot;HGCon_AR/src/hgcore/core/HG_Core.java&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/HGCon_AR/src/hgcore/core/HG_Core.java&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;8101&quot; selectionTopPixel=&quot;3258&quot;/>&#xD;&#xA;&lt;/editor>"/>
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;HG_Core.java&quot; partName=&quot;HG_Core.java&quot; title=&quot;HG_Core.java&quot; tooltip=&quot;HGCon_AR/src/hgcore/core/HG_Core.java&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/HGCon_AR/src/hgcore/core/HG_Core.java&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;13085&quot; selectionTopPixel=&quot;4950&quot;/>&#xD;&#xA;&lt;/editor>"/>
           <tags>Editor</tags>
           <tags>org.eclipse.jdt.ui.CompilationUnitEditor</tags>
           <tags>removeOnHide</tags>
@@ -152,14 +152,14 @@
       </children>
     </sharedElements>
     <sharedElements xsi:type="basic:Part" xmi:id="_F0GH4JNDEeSrP9lQWXbpxA" elementId="org.eclipse.ui.navigator.ProjectExplorer" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" label="Project Explorer" iconURI="platform:/plugin/org.eclipse.ui.navigator.resources/icons/full/eview16/resource_persp.gif" closeable="true">
-      <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;view CommonNavigator.LINKING_ENABLED=&quot;0&quot; org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets=&quot;0&quot;/>"/>
+      <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;view CommonNavigator.LINKING_ENABLED=&quot;0&quot; currentWorkingSetName=&quot;Aggregate for window 1415863728852&quot; org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets=&quot;0&quot;/>"/>
       <tags>View</tags>
       <tags>categoryTag:General</tags>
       <menus xmi:id="_GBwwcJNDEeSrP9lQWXbpxA" elementId="org.eclipse.ui.navigator.ProjectExplorer">
         <tags>ViewMenu</tags>
         <tags>menuContribution:menu</tags>
       </menus>
-      <toolbar xmi:id="_GBx-kJNDEeSrP9lQWXbpxA" elementId="org.eclipse.ui.navigator.ProjectExplorer" visible="false"/>
+      <toolbar xmi:id="_GBx-kJNDEeSrP9lQWXbpxA" elementId="org.eclipse.ui.navigator.ProjectExplorer"/>
     </sharedElements>
     <sharedElements xsi:type="basic:Part" xmi:id="_F0KZUJNDEeSrP9lQWXbpxA" elementId="org.eclipse.ui.views.ResourceNavigator" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" label="Navigator" iconURI="platform:/plugin/org.eclipse.ui.ide/icons/full/eview16/filenav_nav.png" closeable="true">
       <tags>View</tags>
@@ -173,7 +173,7 @@
         <tags>ViewMenu</tags>
         <tags>menuContribution:menu</tags>
       </menus>
-      <toolbar xmi:id="_N9APcZOVEeSrP9lQWXbpxA" elementId="org.eclipse.jdt.ui.TypeHierarchy"/>
+      <toolbar xmi:id="_N9APcZOVEeSrP9lQWXbpxA" elementId="org.eclipse.jdt.ui.TypeHierarchy" visible="false"/>
     </sharedElements>
     <sharedElements xsi:type="basic:Part" xmi:id="_F38GEJNDEeSrP9lQWXbpxA" elementId="org.eclipse.jdt.ui.PackagesView" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" label="Packages" iconURI="platform:/plugin/org.eclipse.jdt.ui/icons/full/eview16/packages.gif" closeable="true">
       <tags>View</tags>
@@ -266,7 +266,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_FZE_0JNDEeSrP9lQWXbpxA" elementId="org.eclipse.ui.workbench.file">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_zVRz0JOdEeS64sboXxX5ow" elementId="print" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" enabled="false" command="_DwYj35NDEeSrP9lQWXbpxA"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_BmrJgJG0EeSZtKE8PG3kcA" elementId="print" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" enabled="false" command="_DwYj35NDEeSrP9lQWXbpxA"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_FZE_0ZNDEeSrP9lQWXbpxA" elementId="additions" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -311,7 +311,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_FZGN8JNDEeSrP9lQWXbpxA" elementId="org.eclipse.ui.workbench.navigate">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_zVcL4JOdEeS64sboXxX5ow" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_DwX8rZNDEeSrP9lQWXbpxA"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_BnPxQJG0EeSZtKE8PG3kcA" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_DwX8rZNDEeSrP9lQWXbpxA"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_FZG1AJNDEeSrP9lQWXbpxA" elementId="group.editor" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -328,17 +328,17 @@
         <tags>stretch</tags>
         <tags>SHOW_RESTORE_MENU</tags>
       </children>
-      <children xsi:type="menu:ToolControl" xmi:id="_zZ51IJOdEeS64sboXxX5ow" elementId="Spacer Glue" contributorURI="platform:/plugin/org.eclipse.ui.ide.application" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.renderers.swt/org.eclipse.e4.ui.workbench.renderers.swt.LayoutModifierToolControl">
+      <children xsi:type="menu:ToolControl" xmi:id="_B_LwIJG0EeSZtKE8PG3kcA" elementId="Spacer Glue" contributorURI="platform:/plugin/org.eclipse.ui.ide.application" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.renderers.swt/org.eclipse.e4.ui.workbench.renderers.swt.LayoutModifierToolControl">
         <tags>glue</tags>
         <tags>move_after:PerspectiveSpacer</tags>
         <tags>SHOW_RESTORE_MENU</tags>
       </children>
-      <children xsi:type="menu:ToolControl" xmi:id="_zZ9fgJOdEeS64sboXxX5ow" elementId="SearchField" contributorURI="platform:/plugin/org.eclipse.ui.ide.application" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.quickaccess.SearchField">
+      <children xsi:type="menu:ToolControl" xmi:id="_B_LwIZG0EeSZtKE8PG3kcA" elementId="SearchField" contributorURI="platform:/plugin/org.eclipse.ui.ide.application" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.quickaccess.SearchField">
         <tags>move_after:Spacer Glue</tags>
         <tags>HIDEABLE</tags>
         <tags>SHOW_RESTORE_MENU</tags>
       </children>
-      <children xsi:type="menu:ToolControl" xmi:id="_zbZC4JOdEeS64sboXxX5ow" elementId="Search-PS Glue" contributorURI="platform:/plugin/org.eclipse.ui.ide.application" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.renderers.swt/org.eclipse.e4.ui.workbench.renderers.swt.LayoutModifierToolControl">
+      <children xsi:type="menu:ToolControl" xmi:id="_CBSo8JG0EeSZtKE8PG3kcA" elementId="Search-PS Glue" contributorURI="platform:/plugin/org.eclipse.ui.ide.application" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.renderers.swt/org.eclipse.e4.ui.workbench.renderers.swt.LayoutModifierToolControl">
         <tags>glue</tags>
         <tags>move_after:SearchField</tags>
         <tags>SHOW_RESTORE_MENU</tags>

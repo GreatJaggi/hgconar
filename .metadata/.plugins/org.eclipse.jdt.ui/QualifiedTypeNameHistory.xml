@@ -6,6 +6,8 @@
 <fullyQualifiedTypeName name="java.awt.Point"/>
 <fullyQualifiedTypeName name="org.opencv.core.Point"/>
 <fullyQualifiedTypeName name="java.awt.Color"/>
-<fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="org.opencv.core.Rect"/>
+<fullyQualifiedTypeName name="org.opencv.core.Core"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="java.lang.System"/>
 </qualifiedTypeNameHistroy>
