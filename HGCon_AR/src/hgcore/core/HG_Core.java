@@ -56,6 +56,8 @@ public class HG_Core extends Thread{
 	 ArrayList<Point> depthPoints = new ArrayList<Point>();
 	 
 	 int xCog = 0, yCog = 0;
+	 
+	 private boolean cogExist = false;
 	
 	
 	//main must be replaced with a run function after it becomes a Thread
@@ -88,9 +90,10 @@ public class HG_Core extends Thread{
 		
 		boolean sing = true;
 		while(true)	{
+			cogExist = false;
 			capture.read(webcam_image);
-			System.out.println("Frame Captured: Width " + 
-		    webcam_image.width() + " Height " + webcam_image.height());
+//			System.out.println("Frame Captured: Width " + 
+//		    webcam_image.width() + " Height " + webcam_image.height());
 			Core.flip(webcam_image, webcam_image, 1); // flip image
 			
 			//rgb to grayscale
@@ -148,29 +151,11 @@ public class HG_Core extends Thread{
 		    
 	    
 		    //grab obCast
-		    Imgproc.cvtColor(ground, ground, Imgproc.COLOR_GRAY2BGR);
-		    double[] obcc;
-		    double[] gtc = new double[]{1,2,3};
 		    
-		    for(int i = 2; i < obCast.rows(); i++)	
-		    	for(int j = 0; j < obCast.cols(); j++)	{
-		    		obcc = obCast.get(i,j);
-		    		try	{
-		    		gtc = ground.get(i + castX,j + castY);
-		    		}catch (Exception e){e.printStackTrace();}
-		    		
-		    		ground.put(i + castX, j + castY, obcc);
-		    		
-		    		try	{
-			    		if(gtc[0] == 255) {
-			    			castX++;
-			    		}//if
-		    		}catch (Exception e){System.out.println("limit reached!");}
-		    	}//for
 		    
 		    //this makes the whole program delayed
 		    //reveal true image
-//		    Imgproc.cvtColor(ground, ground, Imgproc.COLOR_GRAY2BGR);
+		    Imgproc.cvtColor(ground, ground, Imgproc.COLOR_GRAY2BGR);
 //		    double[] hldd;
 //		    for (int i = 0; i < webcam_image.rows(); i++)
 //				for (int j = 0; j < webcam_image.cols(); j++)	{
@@ -185,27 +170,40 @@ public class HG_Core extends Thread{
 		    //contour
 		    ground = drawCG(ground, contours, new Scalar(0,0,255), 1);
 		    
-		    
-		    //center of mass
-//		    List<Moments> mu = new ArrayList<Moments>(contours.size());
-//		    for (int i = 0; i < contours.size(); i++) {
-//		        mu.add(i, Imgproc.moments(contours.get(i), false));
-//		        Moments p = mu.get(i);
-//		        int x = (int) (p.get_m10() / p.get_m00());
-//		        int y = (int) (p.get_m01() / p.get_m00());
-//		        Core.circle(ground, new Point(x, y), 7, new Scalar(255,49,0,255), -1);
-//		    }
-		    
 		    //convex hull
 		    ground = drawCG(ground, convexHullMatOfPointArrayList, new Scalar(0,255,255), 1);
-		    
-		    //bounding box
-		    ground = boundBox(convexHullMatOfPointArrayList, ground);
 		    
 		    getDefects();
 		    
 		    ground = drawDefects(ground);
 		    
+		    //bounding box
+		    ground = boundBox(convexHullMatOfPointArrayList, ground);
+		    
+		    
+
+		    
+		    //Imgproc.cvtColor(ground, ground, Imgproc.COLOR_GRAY2BGR);
+		    double[] obcc;
+		    double[] gtc = new double[]{1,2,3};
+		    
+		    for(int i = 2; i < obCast.rows(); i++)	
+		    	for(int j = 0; j < obCast.cols(); j++)	{
+		    		obcc = obCast.get(i,j);
+		    		try	{
+		    		gtc = ground.get(i + castX,j + castY);
+		    		}catch (Exception e){e.printStackTrace();}
+		    		
+		    		ground.put(i + castX, j + castY, obcc);
+		    		
+		    		//123,253,23
+		    		try	{
+			    		if(/*gtc[0] == 123 && gtc[1] == 253 && gtc[2] == 23 &&*/ fingerTips.size() == 5 && cogExist) {
+			    			castX = yCog - obCast.height()/2;
+			    			castY = xCog - obCast.width()/2;
+			    		}//if
+		    		}catch (Exception e){System.out.println("limit reached!");}
+		    	}//for
 		    
 
 		    
@@ -214,6 +212,12 @@ public class HG_Core extends Thread{
 		}//while
 	}//main
 	
+	ArrayList<Point> drawPoint = new ArrayList<Point>();
+	private void handDrawing(Mat src)	{
+		if(fingerTips.size() == 5 && cogExist)	{
+			
+		}
+	}//handDrawing
 	
 	public void setThresh(double value)	{
 		tresh = value;
@@ -331,14 +335,14 @@ public class HG_Core extends Thread{
 		double distance = 0f;
 		boolean ins = false;
 		defectPoints.clear();
-		for(int i = 0; i < endPoints.size(); i++)	{
+		for(int i = 0; i < startPoints.size(); i++)	{
 			ins = false;
 			if(i > 0 )	{
 				double x1, x2, y1, y2;
-				x1 = endPoints.get(i).x;
-				y1 = endPoints.get(i).y;
-				x2 = endPoints.get(i-1).x;
-				y2 = endPoints.get(i-1).y;
+				x1 = startPoints.get(i).x;
+				y1 = startPoints.get(i).y;
+				x2 = startPoints.get(i-1).x;
+				y2 = startPoints.get(i-1).y;
 				distance = Math.sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2));
 				
 			}//if
@@ -346,7 +350,7 @@ public class HG_Core extends Thread{
 			if(distance > 10)	{
 //				Core.circle(src, endPoints.get(i), 6, new Scalar(255), 3);
 				ins = true;
-				defectPoints.add(endPoints.get(i));
+				defectPoints.add(startPoints.get(i));
 			}
 			
 //			System.out.println("Distance: " + distance + " In: " + ins);
@@ -359,41 +363,36 @@ public class HG_Core extends Thread{
 //		System.out.println("Fingers: " + defectPoints.size());
 		int height = src.height() - 2;
 		int width = src.width() - 2;
+		
+		fingerTips.clear();
 		if(defectPoints.size() <= 7)
 		for(int i = 0; i < defectPoints.size(); i++)	{
 			if(defectPoints.get(i).y < height && defectPoints.get(i).x < width)	{
-			System.out.println(defectPoints.get(i).y + " and " + height);
-				Core.circle(src, defectPoints.get(i), 6, new Scalar(123,0,242), 3);
-				Core.line(src, new Point(xCog, yCog), defectPoints.get(i), new Scalar(123,253,23), 1);
+				fingerTips.add(defectPoints.get(i));
+				
 			}//if
 		}//for
+		
+		double distance = 0f;
+		if(fingerTips.size() <= 5)
+			for(int i = 0; i < fingerTips.size(); i++)	{
+				if(i > 0 )	{
+					double x1, x2, y1, y2;
+					x1 = endPoints.get(i).x;
+					y1 = endPoints.get(i).y;
+					x2 = endPoints.get(i-1).x;
+					y2 = endPoints.get(i-1).y;
+					distance = Math.sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2));
+				}//if
+				
+				Core.circle(src, fingerTips.get(i), 6, new Scalar(123,0,242), 3);
+				Core.line(src, new Point(xCog, yCog), fingerTips.get(i), new Scalar(123,253,23), 1);
+			}//if
+		if(cogExist)
+		System.out.println("Finger Tips: " + fingerTips.size());
 		return src;
 	}//drawDefects
 
-
-	private void reduceTips(int numPoints, ArrayList<Point> tpPts,
-			ArrayList<Point> fldPts, ArrayList<Float> dpths)
-	{
-	  defectPoints.clear();
-
-	  for (int i=0; i < numPoints; i++) {
-	    if (dpths.get(i) < MIN_FINGER_DEPTH)    // defect too shallow
-	      continue;
-
-	    // look at fold points on either side of a tip
-	    int pdx = (i == 0) ? (numPoints-1) : (i - 1); // predecessor of i
-	    int sdx = (i == numPoints-1) ? 0 : (i + 1);   // successor of i
-
-	    
-	    int angle = angleBetween(tpPts.get(i), fldPts.get(pdx), fldPts.get(sdx));
-	    if (angle >= MAX_FINGER_ANGLE)    
-	      continue;      // angle between finger and folds too wide
-
-	    // this point is probably a fingertip, so add to list
-	    defectPoints.add(tpPts.get(i));
-//	    return fngrTips;
-	  }
-	}  // end of reduceTips()
 	
 	private int angleBetween(Point tip, Point next, Point prev)
 	// calculate the angle between the tip and its neighboring folds
@@ -420,8 +419,10 @@ public class HG_Core extends Thread{
 
 	        Core.rectangle(srcImg, new Point(rect.x,rect.y), new Point(rect.x+rect.width,rect.y+rect.height), new Scalar(0,255,0), 1);
 	        
+	        cogExist = true;
 	        //middle of the rect 
 	        Core.circle(srcImg, new Point(rect.x + +rect.width /2 , rect.y+ rect.height /2), 10, new Scalar(255,0,0), 2);
+	        
 	        
 //	        Core.line(srcImg, new Point(rect.x + rect.width /2, rect.y+ rect.height /2), 
 //	        		new Point(rect.x + rect.width / 2, rect.y), new Scalar(255,255,0), 2);
