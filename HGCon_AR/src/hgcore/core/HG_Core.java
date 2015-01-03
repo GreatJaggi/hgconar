@@ -2,11 +2,15 @@ package hgcore.core;
 
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
-import javax.swing.JLabel;
+import javax.imageio.ImageIO;
 
 import org.opencv.core.Core;
+import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfInt;
 import org.opencv.core.MatOfInt4;
@@ -20,26 +24,21 @@ import org.opencv.imgproc.Imgproc;
 public class HG_Core extends Thread{
 	private static final long serialVersionUID = 1L;
 	
-	private JLabel scene = new JLabel("Hello world!");
-	
 	BufferedImage image; 
 	
-
 	public HG_Core()	{
 		super("Core");
-		
-		
 	}//construct
 	
 	
 	double ro, go, bo;
 	double[] rgbo;
-	
 	double[] srcPx;
 	double[] mskPx;
 	
 	//temp tresholding
 	private double tresh = 50;
+	private boolean flip = true;
 	
 	//main must be replaced with a run function after it becomes a Thread
 	public void run()	{
@@ -47,8 +46,26 @@ public class HG_Core extends Thread{
 		VideoCapture capture = new VideoCapture(0);
 		Mat ground = new Mat();
 		
+		//temporary holder for cast objects
+		BufferedImage img = null;
+		try {
+		    img = ImageIO.read(new File(getClass().getResource("/_0cast.png").getPath()));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		byte[] data = ((DataBufferByte) img.getRaster().getDataBuffer()).getData();
+		Mat obCast = new Mat(img.getHeight(), img.getWidth(), CvType.CV_8UC3);
+		obCast.put(0, 0, data);
+//		Mat obCast = new Mat();
+		//end
+		// problem with casting we get 0 size of image
+		
 		
 		Mat model = new Mat();
+		
+		int castX = 0;
+		int castY = 0;
 		
 		boolean sing = true;
 		while(true)	{
@@ -60,12 +77,7 @@ public class HG_Core extends Thread{
 			//rgb to grayscale
 			Mat nMz = webcam_image.clone();
 		    Imgproc.cvtColor(webcam_image, nMz, Imgproc.COLOR_BGR2GRAY);
-		     //rgb to grayscale
-			//image = matToBufferedImage(nMz); // grayScale value
-			
-		    
 		    Mat normal = webcam_image.clone();
-		    
 		    ground = webcam_image.clone();
 		    //capturing a model image (one time only)
 		    if(sing)	{
@@ -109,11 +121,13 @@ public class HG_Core extends Thread{
 			    *                                 END
 			****************************************************************************************************/
 		    
+		    //pre-processing img_op for cntr_def
 		    Imgproc.cvtColor(ground, ground, Imgproc.COLOR_BGR2HSV);
 		    Mat dest = new Mat();
 		    Core.inRange(ground, new Scalar(58,125,0), new Scalar(256,256,256), dest);
 		    Mat erode = Imgproc.getStructuringElement(Imgproc.MORPH_RECT, new Size(3,3));
 	        Mat dilate = Imgproc.getStructuringElement(Imgproc.MORPH_RECT, new Size(5,5));
+<<<<<<< HEAD
 	        Imgproc.erode(ground, ground, erode);
 	        Imgproc.erode(ground, ground, erode);
 	        Imgproc.erode(ground, ground, erode);
@@ -124,20 +138,17 @@ public class HG_Core extends Thread{
 	        
 	        Imgproc.erode(ground, ground, erode);
 	        Imgproc.erode(ground, ground, erode);
+=======
+>>>>>>> upstream/master
 	        Imgproc.dilate(ground, ground, dilate);
 	        Imgproc.dilate(ground, ground, dilate);
+	        Imgproc.erode(ground, ground, erode);
+	        Imgproc.erode(ground, ground, erode);
 	        
-	        
-//	        List<MatOfPoint> contours = new ArrayList<>();
-//
-//	        Imgproc.findContours(dest, contours, new Mat(), Imgproc.RETR_LIST, Imgproc.CHAIN_APPROX_SIMPLE);
-//	        Imgproc.drawContours(dest, contours, -1, new Scalar(255,255,0));
-//		    
 		    //contour definition
 		    Imgproc.cvtColor(ground, ground, Imgproc.COLOR_BGR2GRAY);
 		    Imgproc.Canny(ground, ground, 1, 100);
 		    ArrayList<MatOfPoint> contours = new ArrayList<MatOfPoint>();
-		    
 		    Mat hierarchy = new Mat();
 		    Imgproc.findContours(ground, contours, hierarchy, Imgproc.RETR_EXTERNAL, Imgproc.CHAIN_APPROX_SIMPLE);
 		    
@@ -146,7 +157,8 @@ public class HG_Core extends Thread{
 		    ArrayList<Point> convexHullPointArrayList = new ArrayList<Point>();
 		    MatOfPoint convexHullMatOfPoint = new MatOfPoint();
 		    ArrayList<MatOfPoint> convexHullMatOfPointArrayList = new ArrayList<MatOfPoint>();
-
+		    ArrayList<MatOfInt> convexHullMatOfIntArrayList = new ArrayList();
+		    
 		    try {
 		        //Calculate convex hulls
 		        if(contours.size() > 0)
@@ -157,30 +169,87 @@ public class HG_Core extends Thread{
 		                convexHullPointArrayList.add(contours.get(0).toList().get(convexHullMatOfInt.toList().get(j)));
 		            convexHullMatOfPoint.fromList(convexHullPointArrayList);
 		            convexHullMatOfPointArrayList.add(convexHullMatOfPoint);    
+		            
+		            if(convexHullMatOfIntArrayList.isEmpty())
+		            	convexHullMatOfIntArrayList.add(convexHullMatOfInt);
+		            else System.out.println("Error ArrayList not empty!");
 		        }
 		    } catch (Exception e) {
 		        // TODO Auto-generated catch block
 		        System.out.println("Calculate convex hulls failed. Details below");
 		        e.printStackTrace();
 		    }
-	    	
-	    	
 		    
-		    //draw contour
+		    MatOfInt4 convexityDefectsMatOfInt4 = new MatOfInt4();
+		    ArrayList<MatOfInt4> convexityDefectsMatOfInt4ArrayList = new ArrayList<MatOfInt4>();
+		    for(int i = 0; i < contours.size(); i++)	{	
+		    	try	{
+		    	Imgproc.convexityDefects(contours.get(i), convexHullMatOfIntArrayList.get(i), convexityDefectsMatOfInt4);
+		    	if(!convexityDefectsMatOfInt4.empty())
+		    		convexityDefectsMatOfInt4ArrayList.add(convexityDefectsMatOfInt4);
+		    	}catch(Exception  e) { System.out.println("Exception error! maybe convexhullMatOfIntArraylist is null");}
+		    }//for
+		    
+		    
+		    List<Integer> list1 = null;
+		    
+		    for(int i = 0; i <  convexityDefectsMatOfInt4ArrayList.size(); i++)	{
+		    	list1 = convexityDefectsMatOfInt4ArrayList.get(i).toList();
+		    }//for
+		    
+		    ArrayList<Point> pointList1 = new ArrayList<Point>();
+		    ArrayList<MatOfPoint> pointListMatOfPoint = new ArrayList<MatOfPoint>();
+		    MatOfPoint pointMatOfPoint = new MatOfPoint();
+		    try	{
+			    for(int i = 0; i < list1.size(); i++)	{
+			    	try	{
+			    	pointList1.add(new Point(list1.get(2), list1.get(6)));
+			    	}catch(Exception e)	{}
+			    	pointMatOfPoint.fromList(pointList1);
+			    	pointListMatOfPoint.add(pointMatOfPoint);
+			    	
+			    }//for
+		    }catch(Exception e){}
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    /************************************************************
+		     * *********************** DRAWING **************************
+		     * *********************************************************/
+		    //contour
 		    for(int i = 0; i < contours.size(); i++)
 		    {
 		    	Scalar color = new Scalar(255);
-		    	Imgproc.drawContours(ground, contours, i, color, 2);
+		    	Imgproc.drawContours(ground, contours, i, color, 1);
 		    }//for
 		    
+		    //convex hull
 		    for(int i = 0; i < convexHullMatOfPointArrayList.size(); i++)	{
+		    	Scalar color1 = new Scalar(50);
+		    	Imgproc.drawContours(ground, convexHullMatOfPointArrayList, i, color1, 1);
+		    }//FOR
+		    
+		    for(int i = 0; i < pointListMatOfPoint.size(); i++)	{
 		    	Scalar color1 = new Scalar(123);
-		    	Imgproc.drawContours(ground, convexHullMatOfPointArrayList, i, color1, 5);
-		    }
+		    	Imgproc.drawContours(ground, pointListMatOfPoint, i, color1, 20);
+		    }//FOR
+		    /************************************************************
+		     * *********************** DRAWING **************************
+		     * *********************************************************/
 		    
-		    //contour convex hull
 		    
 		    
+<<<<<<< HEAD
 		    MatOfInt4 mConvexityDefectsMatOfInt4 = new MatOfInt4();
 
 		    try {
@@ -194,18 +263,40 @@ public class HG_Core extends Thread{
 		    } catch (Exception e) {
 		        e.printStackTrace();
 		    }
+=======
+>>>>>>> upstream/master
 		    
+	    
+		    //grab obCast
+//		    Imgproc.cvtColor(ground, ground, Imgproc.COLOR_GRAY2BGR);
+//		    double[] obcc;
+//		    double[] gtc = new double[]{1,2,3};
+//		    for(int i = 2; i < obCast.rows(); i++)	
+//		    	for(int j = 0; j < obCast.cols(); j++)	{
+//		    		obcc = obCast.get(i,j);
+//		    		try	{
+//		    		gtc = ground.get(i + castX,j + castY);
+//		    		}catch (Exception e){e.printStackTrace();}
+//		    		
+//		    		ground.put(i + castX, j + castY, obcc);
+//		    		
+//		    		try	{
+//		    		if(gtc[0] == 123) castX++;
+//		    		}catch (Exception e){System.out.println("limit reached!");}
+//		    	}//for
 		    
+		    //this makes the whole program delayed
 		    //reveal true image
-		    Imgproc.cvtColor(ground, ground, Imgproc.COLOR_GRAY2BGR);
-		    double[] hldd;
-		    for (int i = 0; i < webcam_image.rows(); i++)
-				for (int j = 0; j < webcam_image.cols(); j++)	{
-					hldd = ground.get(i,j);
-					if(hldd[0] == 0)
-						ground.put(i, j, normal.get(i,j));
-				}
-		    
+//		    Imgproc.cvtColor(ground, ground, Imgproc.COLOR_GRAY2BGR);
+//		    double[] hldd;
+//		    for (int i = 0; i < webcam_image.rows(); i++)
+//				for (int j = 0; j < webcam_image.cols(); j++)	{
+//					hldd = ground.get(i,j);
+//					if(hldd[0] == 0)
+//						ground.put(i, j, normal.get(i,j));
+//				}
+
+
 		    
 		    
 			image = matToBufferedImage(ground); // normal BGR Output
@@ -229,6 +320,7 @@ public class HG_Core extends Thread{
 	public boolean isfetching()	{
 		return true;
 	}
+	
 	
 	public static BufferedImage matToBufferedImage(Mat m) { 
 		int type = BufferedImage.TYPE_BYTE_GRAY;
