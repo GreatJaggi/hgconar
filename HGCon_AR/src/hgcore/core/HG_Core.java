@@ -117,7 +117,13 @@ public class HG_Core extends Thread{
 	        Imgproc.erode(ground, ground, erode);
 	        Imgproc.erode(ground, ground, erode);
 	        Imgproc.erode(ground, ground, erode);
-	        Imgproc.dilate(ground, ground, dilate);
+	        Imgproc.erode(ground, ground, erode);
+	        Imgproc.erode(ground, ground, erode);
+	        Imgproc.erode(ground, ground, erode);
+	        Imgproc.erode(ground, ground, erode);
+	        
+	        Imgproc.erode(ground, ground, erode);
+	        Imgproc.erode(ground, ground, erode);
 	        Imgproc.dilate(ground, ground, dilate);
 	        Imgproc.dilate(ground, ground, dilate);
 	        
@@ -175,19 +181,19 @@ public class HG_Core extends Thread{
 		    //contour convex hull
 		    
 		    
-//		    MatOfInt4 mConvexityDefectsMatOfInt4 = new MatOfInt4();
-//
-//		    try {
-//		        Imgproc.convexityDefects(contours.get(0), convexHullMatOfInt, mConvexityDefectsMatOfInt4);
-//
-//		        if(!mConvexityDefectsMatOfInt4.empty())
-//		        {
-//		            int[] mConvexityDefectsIntArrayList = new int[mConvexityDefectsMatOfInt4.toArray().length];
-//		            mConvexityDefectsIntArrayList = mConvexityDefectsMatOfInt4.toArray();
-//		        }
-//		    } catch (Exception e) {
-//		        e.printStackTrace();
-//		    }
+		    MatOfInt4 mConvexityDefectsMatOfInt4 = new MatOfInt4();
+
+		    try {
+		        Imgproc.convexityDefects(contours.get(0), convexHullMatOfInt, mConvexityDefectsMatOfInt4);
+
+		        if(!mConvexityDefectsMatOfInt4.empty())
+		        {
+		            int[] mConvexityDefectsIntArrayList = new int[mConvexityDefectsMatOfInt4.toArray().length];
+		            mConvexityDefectsIntArrayList = mConvexityDefectsMatOfInt4.toArray();
+		        }
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		    }
 		    
 		    
 		    //reveal true image
