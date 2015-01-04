@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
+	<item value="false" key="TypeHierarchyViewPart.qualifiednames"/>
+	<item value="3" key="TypeHierarchyViewPart.orientation"/>
+	<item value="false" key="TypeHierarchyViewPart.linkeditors"/>
 	<item value="C:\eclipse\Libraries\opencv\build\java" key="org.eclipse.jdt.ui.lastextjar"/>
+	<item value="2" key="TypeHierarchyViewPart.hierarchyview"/>
 	<section name="org.eclipse.jdt.internal.ui.packageview.PackageExplorerPart">
 		<item value="2" key="layout"/>
 		<item value="true" key="group_libraries"/>
