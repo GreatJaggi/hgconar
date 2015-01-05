@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;&apos; to &apos;hgcore.core.HG_Core.MIN_FINGER_DEPTH&apos;&#x0D;&#x0A;- Original project: &apos;HGCon_AR&apos;&#x0D;&#x0A;- Destination element: &apos;hgcore.core.HG_Core.MIN_FINGER_DEPTH&apos;&#x0D;&#x0A;- Original element: &apos;hgcore.core.HG_Core.MIN_FINGER_DEPTH&apos;" description="Copy field" destination="/src&lt;hgcore.core{HG_Core.java[HG_Core^MIN_FINGER_DEPTH" element1="/src&lt;hgcore.core{HG_Core.java[HG_Core^MIN_FINGER_DEPTH" flags="589830" id="org.eclipse.jdt.ui.copy" members="1" policy="org.eclipse.jdt.ui.copyMembers" stamp="1420467345770" version="1.0"/>
+</session>

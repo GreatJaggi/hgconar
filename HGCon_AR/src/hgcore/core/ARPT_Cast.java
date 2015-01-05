@@ -3,23 +3,14 @@ package hgcore.core;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
-<<<<<<< HEAD
-<<<<<<< HEAD
-import java.awt.GridLayout;
-=======
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.RenderingHints;
->>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
-=======
-import java.awt.Graphics2D;
-import java.awt.GridLayout;
-import java.awt.RenderingHints;
->>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.net.URL;
 
@@ -28,9 +19,13 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
+import javax.swing.KeyStroke;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.event.ChangeEvent;
@@ -60,6 +55,10 @@ public class ARPT_Cast extends JFrame implements ChangeListener, ItemListener, A
 	private JCheckBox boundingRect = new JCheckBox("Bounding Box");
 	private JCheckBox cogBtn = new JCheckBox("Center Of Gravity / Mass");
 	
+	private JMenuBar menuBar = new JMenuBar();
+	private JMenu fileMenu = new JMenu("File");
+	private JMenuItem menuItem;
+	
 	JSlider threshSlider = new JSlider(JSlider.HORIZONTAL, 0, 255, 0);
 	JLabel tVal = new JLabel("Current Threshold: 50");
 	
@@ -85,6 +84,17 @@ public class ARPT_Cast extends JFrame implements ChangeListener, ItemListener, A
 		filterPane.add(backgroundSubtractionBtn); backgroundSubtractionBtn.addActionListener(this);
 		filterPane.add(CVBtn); CVBtn.addActionListener(this);
 		
+		fileMenu.setMnemonic(KeyEvent.VK_A);
+		fileMenu.getAccessibleContext().setAccessibleDescription(
+		        "The only menu in this program that has menu items");
+		menuBar.add(fileMenu);
+		menuItem = new JMenuItem("New", KeyEvent.VK_T);
+		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
+		menuItem.getAccessibleContext().setAccessibleDescription("This doesn't really do anything");
+		fileMenu.add(menuItem);
+
+		setJMenuBar(menuBar); menuItem.addActionListener(this);
+		
 		
 		
 		core.start();
@@ -92,14 +102,7 @@ public class ARPT_Cast extends JFrame implements ChangeListener, ItemListener, A
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 BufferedImage dimg = core.getImage();
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 //                resizeB(dimg, 500, 700);
->>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
-=======
-//                resizeB(dimg, 500, 700);
->>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
                 g.drawImage(dimg, 0, 0, null);
                 repaint();
             }
@@ -136,14 +139,6 @@ public class ARPT_Cast extends JFrame implements ChangeListener, ItemListener, A
 		
 	}//construct
 	
-<<<<<<< HEAD
-<<<<<<< HEAD
-//	public void actionPerformed(ActionEvent ae)	{
-//		
-//	}//actionPerformed
-=======
-=======
->>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
 	public BufferedImage resizeB(BufferedImage img, int newW, int newH) {  
 	    int w = img.getWidth();  
 	    int h = img.getHeight();  
@@ -155,10 +150,6 @@ public class ARPT_Cast extends JFrame implements ChangeListener, ItemListener, A
 	    g.dispose();  
 	    return dimg;  
 	}  
-<<<<<<< HEAD
->>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
-=======
->>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
 	
 	public void actionPerformed(ActionEvent ae)	{
 		
@@ -169,25 +160,9 @@ public class ARPT_Cast extends JFrame implements ChangeListener, ItemListener, A
 		}//if
 		else trueColorNonCVBtn.setEnabled(true);
 		
-<<<<<<< HEAD
-<<<<<<< HEAD
-		if(src == trueColorCVBtn)	{
-			trueColorCVBtn.setEnabled(false);
-		}//if
-		else trueColorCVBtn.setEnabled(true);
-		
-		if(src == backgroundSubtractionBtn)	{
-			core.backgroundSubtraction = true;
-=======
 		if(src == backgroundSubtractionBtn)	{
 			core.backgroundSubtraction = true;
 			core.filterCV = false;
->>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
-=======
-		if(src == backgroundSubtractionBtn)	{
-			core.backgroundSubtraction = true;
-			core.filterCV = false;
->>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
 			backgroundSubtractionBtn.setEnabled(false);
 		}//if
 		else	{
@@ -195,15 +170,6 @@ public class ARPT_Cast extends JFrame implements ChangeListener, ItemListener, A
 			backgroundSubtractionBtn.setEnabled(true);
 		}//else
 		
-<<<<<<< HEAD
-<<<<<<< HEAD
-		if(src == CVBtn)	{
-			CVBtn.setEnabled(false);
-		}//if
-		else CVBtn.setEnabled(true); 
-=======
-=======
->>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
 		// CV BUTTON!
 		if(src == CVBtn)	{
 			core.filterCV = true;
@@ -225,10 +191,11 @@ public class ARPT_Cast extends JFrame implements ChangeListener, ItemListener, A
 			core.trueColorCV = false;
 			trueColorCVBtn.setEnabled(true);
 		}//else
-<<<<<<< HEAD
->>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
-=======
->>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
+		
+		
+		//MENU BAR ACTION EVENTS
+		if(src == menuItem)
+			JOptionPane.showMessageDialog(null, "You will create new VOBs");
 			
 	}//buttonStateChange
 	
@@ -236,28 +203,6 @@ public class ARPT_Cast extends JFrame implements ChangeListener, ItemListener, A
 	    Object source = e.getItemSelectable();
 	    
 	    if (source == contourBtn) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-	    	
-	    }//if
-	    
-	    else if (source == convexHullBtn) {
-	    	
-	    }//else
-	    
-	    else if (source == convexityDefectsBtn) {
-	    	
-	    }//else
-	    
-	    else if (source == boundingRect) {
-	    	
-	    }//else
-	    
-	    else if (source == cogBtn) {
-	    	
-=======
-=======
->>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
 	    	core.viewContour = !core.viewContour;
 	    }//if
 	    
@@ -275,10 +220,6 @@ public class ARPT_Cast extends JFrame implements ChangeListener, ItemListener, A
 	    
 	    else if (source == cogBtn) {
 	    	core.viewCOG = !core.viewCOG;
-<<<<<<< HEAD
->>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
-=======
->>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
 	    }//else
 	}//itemStateChanged
 	

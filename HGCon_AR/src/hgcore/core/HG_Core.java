@@ -64,11 +64,6 @@ public class HG_Core extends Thread{
 	 public boolean backgroundSubtraction = false;
 	 public boolean filterCV = false;
 	 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
 	 public boolean viewContour = false;
 	 public boolean viewConvexHull = false;
 	 public boolean viewConvexityDefects = false;
@@ -80,10 +75,6 @@ public class HG_Core extends Thread{
 	 private int groundHeight;
 	 
 	 
-<<<<<<< HEAD
->>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
-=======
->>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
 	//main must be replaced with a run function after it becomes a Thread
 	public void run()	{
 		Mat webcam_image;// = new Mat(); // normal image
@@ -136,15 +127,7 @@ public class HG_Core extends Thread{
 		    *                NON-ADAPTIVE BACKGROUND SUBTRACITON
 		    *                                 START
 		    ****************************************************************************************************/
-<<<<<<< HEAD
-<<<<<<< HEAD
-		    if(backgroundSubtraction)	{
-=======
 		    if(backgroundSubtraction || filterCV)	{
->>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
-=======
-		    if(backgroundSubtraction || filterCV)	{
->>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
 		    for (int i = 0; i < webcam_image.rows(); i++)
 				for (int j = 0; j < webcam_image.cols(); j++)	{
 					srcPx = ground.get(i,j);
@@ -175,73 +158,6 @@ public class HG_Core extends Thread{
 			    *                                 END
 			****************************************************************************************************/
 		    
-<<<<<<< HEAD
-<<<<<<< HEAD
-		    
-//		    ArrayList<MatOfPoint> contours = new ArrayList<MatOfPoint>();
-//		    ArrayList<MatOfPoint> convexHullMatOfPointArrayList = new ArrayList<MatOfPoint>();
-//		    
-//		    //Hand gesture recognition
-//		    ground = CVHandRec(ground, contours, convexHullMatOfPointArrayList);
-//		    
-//	    
-//		    //grab obCast
-//		    
-//		    
-//		    //this makes the whole program delayed
-//		    //reveal true image
-//		    Imgproc.cvtColor(ground, ground, Imgproc.COLOR_GRAY2BGR);
-////		    double[] hldd;
-////		    for (int i = 0; i < webcam_image.rows(); i++)
-////				for (int j = 0; j < webcam_image.cols(); j++)	{
-////					hldd = ground.get(i,j);
-////					if(hldd[0] == 0)
-////						ground.put(i, j, webcam_image.get(i,j));
-////				}
-//		    
-//		    /************************************************************
-//		     * *********************** DRAWING **************************
-//		     * *********************************************************/
-//		    //contour
-//		    ground = drawCG(ground, contours, new Scalar(0,0,255), 1);
-//		    
-//		    //convex hull
-//		    ground = drawCG(ground, convexHullMatOfPointArrayList, new Scalar(0,255,255), 1);
-//		    
-//		    getDefects();
-//		    
-//		    ground = drawDefects(ground);
-//		    
-//		    //bounding box
-//		    ground = boundBox(convexHullMatOfPointArrayList, ground);
-//		    
-//		    
-//
-//		    
-//		    //Imgproc.cvtColor(ground, ground, Imgproc.COLOR_GRAY2BGR);
-//		    double[] obcc;
-//		    double[] gtc = new double[]{1,2,3};
-//		    
-//		    for(int i = 2; i < obCast.rows(); i++)	
-//		    	for(int j = 0; j < obCast.cols(); j++)	{
-//		    		obcc = obCast.get(i,j);
-//		    		try	{
-//		    		gtc = ground.get(i + castX,j + castY);
-//		    		}catch (Exception e){e.printStackTrace();}
-//		    		
-//		    		ground.put(i + castX, j + castY, obcc);
-//		    		
-//		    		//123,253,23
-//		    		try	{
-//			    		if(/*gtc[0] == 123 && gtc[1] == 253 && gtc[2] == 23 &&*/ fingerTips.size() == 5 && cogExist) {
-//			    			castX = yCog - obCast.height()/2;
-//			    			castY = xCog - obCast.width()/2;
-//			    		}//if
-//		    		}catch (Exception e){System.out.println("limit reached!");}
-//		    	}//for
-=======
-=======
->>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
 		    if(filterCV)	{
 		    ArrayList<MatOfPoint> contours = new ArrayList<MatOfPoint>();
 		    ArrayList<MatOfPoint> convexHullMatOfPointArrayList = new ArrayList<MatOfPoint>();
@@ -250,7 +166,6 @@ public class HG_Core extends Thread{
 		    ground = CVHandRec(ground, contours, convexHullMatOfPointArrayList);
 		    
 	    
-		    //grab obCast
 		    Imgproc.cvtColor(ground, ground, Imgproc.COLOR_GRAY2BGR);
 		    
 		    if(trueColorCV)	{
@@ -268,9 +183,33 @@ public class HG_Core extends Thread{
 		    /************************************************************
 		     * *********************** DRAWING **************************
 		     * *********************************************************/
+
+		    double maxArea = -1;
+		    int maxAreaIdx = -1;
+		    for (int idx = 0; idx < contours.size(); idx++) {
+		        Mat contour = contours.get(idx);
+		        double contourarea = Imgproc.contourArea(contour);
+		        if (contourarea > maxArea) {
+		            maxArea = contourarea;
+		            maxAreaIdx = idx;
+		        }//if
+		    }//for
+		    
+		    ArrayList<MatOfPoint> largestContour = new ArrayList<MatOfPoint>();
+		    try	{
+		    MatOfPoint mopcont = contours.get(maxAreaIdx);
+		    
+		    largestContour.clear();
+		    largestContour.add(mopcont);
+		    }catch(Exception e){}
+		    
+		    
+		    convexHullMatOfPointArrayList = getHGCV(largestContour, convexHullMatOfPointArrayList);
+		    
 		    //contour
 		    if(viewContour)
-		    ground = drawCG(ground, contours, new Scalar(0,0,255), 1);
+		    ground = drawCG(ground, largestContour, new Scalar(0,0,255), 1);
+		    
 		    
 		    //convex hull
 		    if(viewConvexHull)
@@ -287,7 +226,7 @@ public class HG_Core extends Thread{
 		    
 		    
 
-		    
+		    //OBCast
 		    //Imgproc.cvtColor(ground, ground, Imgproc.COLOR_GRAY2BGR);
 		    double[] obcc;
 		    double[] gtc = new double[]{1,2,3};
@@ -309,7 +248,8 @@ public class HG_Core extends Thread{
 			    		}//if
 		    		}catch (Exception e){System.out.println("limit reached!");}
 		    	}//for
->>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
+		    Size size = new Size();
+//		    
 		    
 
 		    }//if filterCV
@@ -365,7 +305,56 @@ public class HG_Core extends Thread{
 	    Mat hierarchy = new Mat();
 	    Imgproc.findContours(src, contours, hierarchy, Imgproc.RETR_EXTERNAL, Imgproc.CHAIN_APPROX_SIMPLE);
 	    
-	    //convex hull
+	   
+		
+		return src;
+	}//CVHandRed
+	
+	
+	public void setGround(int width, int height)	{
+		groundWidth = width;
+		groundHeight = height;
+	}//setGround
+	
+	public int getGroundWidth()	{
+		return groundWidth;
+	}//getGroundWidht
+	
+	public int getGroundHeight()	{
+		return groundHeight;
+	}//getGroundWidht
+	
+	
+	private void getDefects()	{
+		double distance = 0f;
+		boolean ins = false;
+		defectPoints.clear();
+		for(int i = 0; i < startPoints.size(); i++)	{
+			ins = false;
+			if(i > 0 )	{
+				double x1, x2, y1, y2;
+				x1 = startPoints.get(i).x;
+				y1 = startPoints.get(i).y;
+				x2 = startPoints.get(i-1).x;
+				y2 = startPoints.get(i-1).y;
+				distance = Math.sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2));
+				
+			}//if
+			
+			if(distance > 10)	{
+//				Core.circle(src, endPoints.get(i), 6, new Scalar(255), 3);
+				ins = true;
+				defectPoints.add(startPoints.get(i));
+			}
+			
+//			System.out.println("Distance: " + distance + " In: " + ins);
+		}//for
+		
+//		return src;
+	}//DEFECTS
+	
+	private ArrayList<MatOfPoint> getHGCV(ArrayList<MatOfPoint> contours, ArrayList<MatOfPoint> convexHullMatOfPointArrayList)	{
+		 //convex hull
 	    MatOfInt convexHullMatOfInt = new MatOfInt();
 	    ArrayList<Point> convexHullPointArrayList = new ArrayList<Point>();
 	    MatOfPoint convexHullMatOfPoint = new MatOfPoint();
@@ -437,53 +426,11 @@ public class HG_Core extends Thread{
 	        // TODO Auto-generated catch block
 	        System.out.println("Calculate convex hulls failed. Details below");
 	        e.printStackTrace();
-	    }
-		
-		return src;
-	}//CVHandRed
-	
-	
-	public void setGround(int width, int height)	{
-		groundWidth = width;
-		groundHeight = height;
-	}//setGround
-	
-	public int getGroundWidth()	{
-		return groundWidth;
-	}//getGroundWidht
-	
-	public int getGroundHeight()	{
-		return groundHeight;
-	}//getGroundWidht
-	
-	
-	private void getDefects()	{
-		double distance = 0f;
-		boolean ins = false;
-		defectPoints.clear();
-		for(int i = 0; i < startPoints.size(); i++)	{
-			ins = false;
-			if(i > 0 )	{
-				double x1, x2, y1, y2;
-				x1 = startPoints.get(i).x;
-				y1 = startPoints.get(i).y;
-				x2 = startPoints.get(i-1).x;
-				y2 = startPoints.get(i-1).y;
-				distance = Math.sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2));
-				
-			}//if
-			
-			if(distance > 10)	{
-//				Core.circle(src, endPoints.get(i), 6, new Scalar(255), 3);
-				ins = true;
-				defectPoints.add(startPoints.get(i));
-			}
-			
-//			System.out.println("Distance: " + distance + " In: " + ins);
-		}//for
-		
-//		return src;
-	}//DEFECTS
+	    }//catch
+	    
+	    return convexHullMatOfPointArrayList;
+	    
+	}
 	
 	private Mat drawDefects(Mat src)	{
 //		System.out.println("Fingers: " + defectPoints.size());
