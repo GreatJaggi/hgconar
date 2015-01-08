@@ -38,7 +38,7 @@ public class HG_Core extends Thread{
 	double[] mskPx;
 	
 	//temp tresholding
-	private double tresh = 50;
+	private double tresh = 80;
 	private boolean flip = true;
 	
 	
@@ -59,11 +59,26 @@ public class HG_Core extends Thread{
 	 
 	 private boolean cogExist = false;
 	
-	
+	 public boolean trueColorNonCV = true;
+	 public boolean trueColorCV = false;
+	 public boolean backgroundSubtraction = false;
+	 public boolean filterCV = false;
+	 
+	 public boolean viewContour = false;
+	 public boolean viewConvexHull = false;
+	 public boolean viewConvexityDefects = false;
+	 public boolean viewBoundingRect = false;
+	 public boolean viewCOG = false;
+	 
+	 
+	 private int groundWidth;
+	 private int groundHeight;
+	 
+	 
 	//main must be replaced with a run function after it becomes a Thread
 	public void run()	{
-		Mat webcam_image = new Mat(); // normal image
-		Mat ground = new Mat(); // converted image
+		Mat webcam_image;// = new Mat(); // normal image
+		Mat ground;// = new Mat(); // converted image
 		VideoCapture capture = new VideoCapture(0);
 		
 		
@@ -90,15 +105,15 @@ public class HG_Core extends Thread{
 		
 		boolean sing = true;
 		while(true)	{
+			
+			webcam_image = new Mat();
+			ground = new Mat();
 			cogExist = false;
 			capture.read(webcam_image);
 //			System.out.println("Frame Captured: Width " + 
 //		    webcam_image.width() + " Height " + webcam_image.height());
 			Core.flip(webcam_image, webcam_image, 1); // flip image
 			
-			//rgb to grayscale
-			Mat nMz = webcam_image.clone();
-		    Imgproc.cvtColor(webcam_image, nMz, Imgproc.COLOR_BGR2GRAY);
 		    ground = webcam_image.clone();
 		    //capturing a model image (one time only)
 		    if(sing)	{
@@ -112,7 +127,7 @@ public class HG_Core extends Thread{
 		    *                NON-ADAPTIVE BACKGROUND SUBTRACITON
 		    *                                 START
 		    ****************************************************************************************************/
-		    
+		    if(backgroundSubtraction || filterCV)	{
 		    for (int i = 0; i < webcam_image.rows(); i++)
 				for (int j = 0; j < webcam_image.cols(); j++)	{
 					srcPx = ground.get(i,j);
@@ -136,13 +151,14 @@ public class HG_Core extends Thread{
 					//masking
 					
 				}//FOR
+		    }//if
 		    
 		    /****************************************************************************************************
 			    *                NON-ADAPTIVE BACKGROUND SUBTRACITON
 			    *                                 END
 			****************************************************************************************************/
 		    
-		    
+		    if(filterCV)	{
 		    ArrayList<MatOfPoint> contours = new ArrayList<MatOfPoint>();
 		    ArrayList<MatOfPoint> convexHullMatOfPointArrayList = new ArrayList<MatOfPoint>();
 		    
@@ -151,33 +167,38 @@ public class HG_Core extends Thread{
 		    
 	    
 		    //grab obCast
+		    Imgproc.cvtColor(ground, ground, Imgproc.COLOR_GRAY2BGR);
 		    
-		    
+		    if(trueColorCV)	{
 		    //this makes the whole program delayed
 		    //reveal true image
-		    Imgproc.cvtColor(ground, ground, Imgproc.COLOR_GRAY2BGR);
-//		    double[] hldd;
-//		    for (int i = 0; i < webcam_image.rows(); i++)
-//				for (int j = 0; j < webcam_image.cols(); j++)	{
-//					hldd = ground.get(i,j);
-//					if(hldd[0] == 0)
-//						ground.put(i, j, webcam_image.get(i,j));
-//				}
+		    double[] hldd;
+		    for (int i = 0; i < webcam_image.rows(); i++)
+				for (int j = 0; j < webcam_image.cols(); j++)	{
+					hldd = ground.get(i,j);
+					if(hldd[0] == 0)
+						ground.put(i, j, webcam_image.get(i,j));
+				}//for
+		    }//if trueColor
 		    
 		    /************************************************************
 		     * *********************** DRAWING **************************
 		     * *********************************************************/
 		    //contour
+		    if(viewContour)
 		    ground = drawCG(ground, contours, new Scalar(0,0,255), 1);
 		    
 		    //convex hull
+		    if(viewConvexHull)
 		    ground = drawCG(ground, convexHullMatOfPointArrayList, new Scalar(0,255,255), 1);
 		    
 		    getDefects();
 		    
+		    if(viewConvexityDefects)
 		    ground = drawDefects(ground);
 		    
 		    //bounding box
+		    if(viewBoundingRect)
 		    ground = boundBox(convexHullMatOfPointArrayList, ground);
 		    
 		    
@@ -206,9 +227,15 @@ public class HG_Core extends Thread{
 		    	}//for
 		    
 
+		    }//if filterCV
+		    
+		    
+		    
+		    
 		    
 			image = matToBufferedImage(ground); // normal BGR Output
-			
+			webcam_image.release();
+			ground.release();
 		}//while
 	}//main
 	
@@ -331,6 +358,20 @@ public class HG_Core extends Thread{
 	}//CVHandRed
 	
 	
+	public void setGround(int width, int height)	{
+		groundWidth = width;
+		groundHeight = height;
+	}//setGround
+	
+	public int getGroundWidth()	{
+		return groundWidth;
+	}//getGroundWidht
+	
+	public int getGroundHeight()	{
+		return groundHeight;
+	}//getGroundWidht
+	
+	
 	private void getDefects()	{
 		double distance = 0f;
 		boolean ins = false;
@@ -420,7 +461,8 @@ public class HG_Core extends Thread{
 	        Core.rectangle(srcImg, new Point(rect.x,rect.y), new Point(rect.x+rect.width,rect.y+rect.height), new Scalar(0,255,0), 1);
 	        
 	        cogExist = true;
-	        //middle of the rect 
+	        //middle of the rect
+	        if(viewCOG)
 	        Core.circle(srcImg, new Point(rect.x + +rect.width /2 , rect.y+ rect.height /2), 10, new Scalar(255,0,0), 2);
 	        
 	        

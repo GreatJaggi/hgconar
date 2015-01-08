@@ -1,11 +1,11 @@
 SCRIPT_AREA_BORDER=\#D8D8D8 | null | null | null | null | null
 TerminalPrefInvertColors=true
-commentBorder=\#C7DD0C | null | null | null | null | null
-commentText=\#C7DD0C | null | null | null | null | null
+commentBorder=\#75715E | null | null | false | null | null
+commentText=\#75715E | null | null | false | null | null
 eclipse.preferences.version=1
-jsp_content=\#D8D8D8 | null | null | null | null | null
+jsp_content=\#F8F8F2 | null | null | null | null | null
 overriddenByCSS=,TerminalPrefInvertColors,
-tagAttributeEquals=\#D8D8D8 | null | null | null | null | null
-tagAttributeName=\#FFFFFF | null | false | null | null | null
-tagAttributeValue=\#FFC600 | null | null | null | null | null
+tagAttributeEquals=\#F8F8F2 | null | null | null | null | null
+tagAttributeName=\#66CCB3 | null | null | null | null | null
+tagAttributeValue=\#E6DB74 | null | null | null | null | null
 tagBorder=\#FFFFFF | null | null | null | null | null
