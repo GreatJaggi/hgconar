@@ -2,20 +2,44 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
+<<<<<<< HEAD
+<<<<<<< HEAD
 		<item value="" key="selection"/>
+=======
+		<item value="cog" key="selection"/>
+>>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
+=======
+		<item value="cog" key="selection"/>
+>>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+			<item value="cog"/>
+			<item value="hsv"/>
+>>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
+=======
+			<item value="cog"/>
+			<item value="hsv"/>
+>>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
 			<item value="core.stop"/>
 			<item value="webcam"/>
 			<item value="Mat"/>
 			<item value="tVal"/>
 			<item value="EXIT"/>
 			<item value="exitOn"/>
+<<<<<<< HEAD
+<<<<<<< HEAD
 			<item value="castX"/>
 			<item value="Frame Captured"/>
+=======
+>>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
+=======
+>>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
 		</list>
 		<list key="replacehistory">
 			<item value="defectPoints"/>
