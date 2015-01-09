@@ -1,0 +1,129 @@
+package hgcore.core;
+
+import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferByte;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
+
+import org.opencv.core.Core;
+import org.opencv.core.CvType;
+import org.opencv.core.Mat;
+import org.opencv.core.MatOfInt;
+import org.opencv.core.MatOfInt4;
+import org.opencv.core.MatOfPoint;
+import org.opencv.core.MatOfPoint2f;
+import org.opencv.core.Point;
+import org.opencv.core.Rect;
+import org.opencv.core.Scalar;
+import org.opencv.core.Size;
+import org.opencv.highgui.VideoCapture;
+import org.opencv.imgproc.Imgproc;
+
+public class HG_Core extends Thread{
+	private static final long serialVersionUID = 1L;
+	
+	BufferedImage image; 
+	
+	public HG_Core()	{
+		super("Core");
+	}//construct
+	
+	
+	double ro, go, bo;
+	double[] rgbo;
+	double[] srcPx;
+	double[] mskPx;
+	
+	//temp tresholding
+	private double tresh = 80;
+	private boolean flip = true;
+	
+	
+	private static final int MIN_FINGER_DEPTH = 20;
+	private static final int MAX_FINGER_ANGLE = 60;   // degrees
+	
+	private ArrayList<Point> defectPoints = new ArrayList<Point>();
+	private ArrayList<Point> fingerTips = new ArrayList<Point>();
+	// defects data for the hand contour
+//	 Point[] tipPts, foldPts;   
+//	 float[] depths;
+	 
+	 ArrayList<Point> startPoints = new ArrayList<Point>();
+	 ArrayList<Point> endPoints = new ArrayList<Point>();
+	 ArrayList<Point> depthPoints = new ArrayList<Point>();
+	 
+	 int xCog = 0, yCog = 0;
+	 
+	 private boolean cogExist = false;
+	
+	
+	//main must be replaced with a run function after it becomes a Thread
+	public void run()	{
+		Mat webcam_image;// = new Mat(); // normal image
+		Mat ground;// = new Mat(); // converted image
+		VideoCapture capture = new VideoCapture(0);
+		
+		
+		//temporary holder for cast objects
+		BufferedImage img = null;
+		try {
+		    img = ImageIO.read(new File(getClass().getResource("/_0cast.png").getPath()));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		byte[] data = ((DataBufferByte) img.getRaster().getDataBuffer()).getData();
+		Mat obCast = new Mat(img.getHeight(), img.getWidth(), CvType.CV_8UC3);
+		obCast.put(0, 0, data);
+//		Mat obCast = new Mat();
+		//end
+		// problem with casting we get 0 size of image
+		
+		
+		Mat model = new Mat();
+		
+		int castX = 0;
+		int castY = 0;
+		
+		boolean sing = true;
+		while(true)	{
+			webcam_image = new Mat();
+			ground = new Mat();
+			
+			capture.read(webcam_image);
+			
+//			webcam_image.convertTo(webcam_image, CvType);
+//			webcam_image.convertTo(webcam_image, CvType.CV_32FC3);
+			Imgproc.cvtColor(webcam_image, ground, Imgproc.COLOR_BGR2HSV);;
+			float [] float1d = new float[ground.rows()*ground.cols()*ground.channels()];
+			
+			
+			image = matToBufferedImage(ground); // normal BGR Output
+			webcam_image.release();
+//			ground.release();
+		}//while
+	}//main
+	
+	public BufferedImage getImage()	{
+		return image;
+	}//getImage()
+	
+	
+	public static BufferedImage matToBufferedImage(Mat m) { 
+		int type = BufferedImage.TYPE_BYTE_GRAY;
+        if ( m.channels() > 1 ) {
+            type = BufferedImage.TYPE_3BYTE_BGR;
+        }
+        int bufferSize = m.channels()*m.cols()*m.rows();
+        byte [] b = new byte[bufferSize];
+        m.get(0,0,b); // get all the pixels
+        BufferedImage image = new BufferedImage(m.cols(),m.rows(), type);
+        final byte[] targetPixels = ((DataBufferByte) image.getRaster().getDataBuffer()).getData();
+        System.arraycopy(b, 0, targetPixels, 0, b.length);  
+        return image;
+
+	}//metToBufferedImage
+}//class

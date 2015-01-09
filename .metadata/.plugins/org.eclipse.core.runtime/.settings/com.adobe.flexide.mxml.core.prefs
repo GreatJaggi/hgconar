@@ -1,8 +1,10 @@
-asASDocColor=\#CCDF32
+asASDocColor=\#75715E
+asASDocItalic=false
 eclipse.preferences.version=1
-mxmlCommentColor=\#C7DD0C
+mxmlCommentColor=\#75715E
+mxmlCommentItalic=false
 mxmlComponentTagColor=\#BED6FF
 mxmlProcessingInstructionColor=\#FFFFFF
-mxmlStringColor=\#FFC600
+mxmlStringColor=\#E6DB74
 mxmlTagColor=\#79ABFF
-mxmlTextColor=\#D8D8D8
+mxmlTextColor=\#F8F8F2
