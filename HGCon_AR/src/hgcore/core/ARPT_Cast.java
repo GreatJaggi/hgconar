@@ -3,7 +3,13 @@ package hgcore.core;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
+<<<<<<< HEAD
 import java.awt.GridLayout;
+=======
+import java.awt.Graphics2D;
+import java.awt.GridLayout;
+import java.awt.RenderingHints;
+>>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -80,6 +86,10 @@ public class ARPT_Cast extends JFrame implements ChangeListener, ItemListener, A
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 BufferedImage dimg = core.getImage();
+<<<<<<< HEAD
+=======
+//                resizeB(dimg, 500, 700);
+>>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
                 g.drawImage(dimg, 0, 0, null);
                 repaint();
             }
@@ -116,9 +126,23 @@ public class ARPT_Cast extends JFrame implements ChangeListener, ItemListener, A
 		
 	}//construct
 	
+<<<<<<< HEAD
 //	public void actionPerformed(ActionEvent ae)	{
 //		
 //	}//actionPerformed
+=======
+	public BufferedImage resizeB(BufferedImage img, int newW, int newH) {  
+	    int w = img.getWidth();  
+	    int h = img.getHeight();  
+	    BufferedImage dimg = new BufferedImage(newW, newH, img.getType());  
+	    Graphics2D g = dimg.createGraphics();  
+	    g.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
+	    RenderingHints.VALUE_INTERPOLATION_BILINEAR);  
+	    g.drawImage(img, 0, 0, newW, newH, 0, 0, w, h, null);  
+	    g.dispose();  
+	    return dimg;  
+	}  
+>>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
 	
 	public void actionPerformed(ActionEvent ae)	{
 		
@@ -129,6 +153,7 @@ public class ARPT_Cast extends JFrame implements ChangeListener, ItemListener, A
 		}//if
 		else trueColorNonCVBtn.setEnabled(true);
 		
+<<<<<<< HEAD
 		if(src == trueColorCVBtn)	{
 			trueColorCVBtn.setEnabled(false);
 		}//if
@@ -136,6 +161,11 @@ public class ARPT_Cast extends JFrame implements ChangeListener, ItemListener, A
 		
 		if(src == backgroundSubtractionBtn)	{
 			core.backgroundSubtraction = true;
+=======
+		if(src == backgroundSubtractionBtn)	{
+			core.backgroundSubtraction = true;
+			core.filterCV = false;
+>>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
 			backgroundSubtractionBtn.setEnabled(false);
 		}//if
 		else	{
@@ -143,10 +173,34 @@ public class ARPT_Cast extends JFrame implements ChangeListener, ItemListener, A
 			backgroundSubtractionBtn.setEnabled(true);
 		}//else
 		
+<<<<<<< HEAD
 		if(src == CVBtn)	{
 			CVBtn.setEnabled(false);
 		}//if
 		else CVBtn.setEnabled(true); 
+=======
+		// CV BUTTON!
+		if(src == CVBtn)	{
+			core.filterCV = true;
+			CVBtn.setEnabled(false);
+		}//if
+		else	{
+			core.filterCV = false;
+			CVBtn.setEnabled(true); 
+		}//else
+		
+		// TRUE COLOR CV BUTTON
+		if(src == trueColorCVBtn)	{
+			core.filterCV = true;
+			core.trueColorCV = true;
+			trueColorCVBtn.setEnabled(false);
+		}//if
+		else	if(src == CVBtn){
+			core.filterCV = true;
+			core.trueColorCV = false;
+			trueColorCVBtn.setEnabled(true);
+		}//else
+>>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
 			
 	}//buttonStateChange
 	
@@ -154,6 +208,7 @@ public class ARPT_Cast extends JFrame implements ChangeListener, ItemListener, A
 	    Object source = e.getItemSelectable();
 	    
 	    if (source == contourBtn) {
+<<<<<<< HEAD
 	    	
 	    }//if
 	    
@@ -171,6 +226,25 @@ public class ARPT_Cast extends JFrame implements ChangeListener, ItemListener, A
 	    
 	    else if (source == cogBtn) {
 	    	
+=======
+	    	core.viewContour = !core.viewContour;
+	    }//if
+	    
+	    else if (source == convexHullBtn) {
+	    	core.viewConvexHull = !core.viewConvexHull;
+	    }//else
+	    
+	    else if (source == convexityDefectsBtn) {
+	    	core.viewConvexityDefects = !core.viewConvexityDefects;
+	    }//else
+	    
+	    else if (source == boundingRect) {
+	    	core.viewBoundingRect = !core.viewBoundingRect;
+	    }//else
+	    
+	    else if (source == cogBtn) {
+	    	core.viewCOG = !core.viewCOG;
+>>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
 	    }//else
 	}//itemStateChanged
 	

@@ -64,8 +64,6 @@ public class HG_Core extends Thread{
 	 public boolean backgroundSubtraction = false;
 	 public boolean filterCV = false;
 	 
-<<<<<<< HEAD
-=======
 	 public boolean viewContour = false;
 	 public boolean viewConvexHull = false;
 	 public boolean viewConvexityDefects = false;
@@ -77,7 +75,6 @@ public class HG_Core extends Thread{
 	 private int groundHeight;
 	 
 	 
->>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
 	//main must be replaced with a run function after it becomes a Thread
 	public void run()	{
 		Mat webcam_image;// = new Mat(); // normal image
@@ -130,11 +127,7 @@ public class HG_Core extends Thread{
 		    *                NON-ADAPTIVE BACKGROUND SUBTRACITON
 		    *                                 START
 		    ****************************************************************************************************/
-<<<<<<< HEAD
-		    if(backgroundSubtraction)	{
-=======
 		    if(backgroundSubtraction || filterCV)	{
->>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
 		    for (int i = 0; i < webcam_image.rows(); i++)
 				for (int j = 0; j < webcam_image.cols(); j++)	{
 					srcPx = ground.get(i,j);
@@ -165,70 +158,6 @@ public class HG_Core extends Thread{
 			    *                                 END
 			****************************************************************************************************/
 		    
-<<<<<<< HEAD
-		    
-//		    ArrayList<MatOfPoint> contours = new ArrayList<MatOfPoint>();
-//		    ArrayList<MatOfPoint> convexHullMatOfPointArrayList = new ArrayList<MatOfPoint>();
-//		    
-//		    //Hand gesture recognition
-//		    ground = CVHandRec(ground, contours, convexHullMatOfPointArrayList);
-//		    
-//	    
-//		    //grab obCast
-//		    
-//		    
-//		    //this makes the whole program delayed
-//		    //reveal true image
-//		    Imgproc.cvtColor(ground, ground, Imgproc.COLOR_GRAY2BGR);
-////		    double[] hldd;
-////		    for (int i = 0; i < webcam_image.rows(); i++)
-////				for (int j = 0; j < webcam_image.cols(); j++)	{
-////					hldd = ground.get(i,j);
-////					if(hldd[0] == 0)
-////						ground.put(i, j, webcam_image.get(i,j));
-////				}
-//		    
-//		    /************************************************************
-//		     * *********************** DRAWING **************************
-//		     * *********************************************************/
-//		    //contour
-//		    ground = drawCG(ground, contours, new Scalar(0,0,255), 1);
-//		    
-//		    //convex hull
-//		    ground = drawCG(ground, convexHullMatOfPointArrayList, new Scalar(0,255,255), 1);
-//		    
-//		    getDefects();
-//		    
-//		    ground = drawDefects(ground);
-//		    
-//		    //bounding box
-//		    ground = boundBox(convexHullMatOfPointArrayList, ground);
-//		    
-//		    
-//
-//		    
-//		    //Imgproc.cvtColor(ground, ground, Imgproc.COLOR_GRAY2BGR);
-//		    double[] obcc;
-//		    double[] gtc = new double[]{1,2,3};
-//		    
-//		    for(int i = 2; i < obCast.rows(); i++)	
-//		    	for(int j = 0; j < obCast.cols(); j++)	{
-//		    		obcc = obCast.get(i,j);
-//		    		try	{
-//		    		gtc = ground.get(i + castX,j + castY);
-//		    		}catch (Exception e){e.printStackTrace();}
-//		    		
-//		    		ground.put(i + castX, j + castY, obcc);
-//		    		
-//		    		//123,253,23
-//		    		try	{
-//			    		if(/*gtc[0] == 123 && gtc[1] == 253 && gtc[2] == 23 &&*/ fingerTips.size() == 5 && cogExist) {
-//			    			castX = yCog - obCast.height()/2;
-//			    			castY = xCog - obCast.width()/2;
-//			    		}//if
-//		    		}catch (Exception e){System.out.println("limit reached!");}
-//		    	}//for
-=======
 		    if(filterCV)	{
 		    ArrayList<MatOfPoint> contours = new ArrayList<MatOfPoint>();
 		    ArrayList<MatOfPoint> convexHullMatOfPointArrayList = new ArrayList<MatOfPoint>();
@@ -296,15 +225,9 @@ public class HG_Core extends Thread{
 			    		}//if
 		    		}catch (Exception e){System.out.println("limit reached!");}
 		    	}//for
->>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
 		    
 
 		    }//if filterCV
-		    
-		    
-		    
-		    
-		    
 			image = matToBufferedImage(ground); // normal BGR Output
 			webcam_image.release();
 			ground.release();
@@ -434,14 +357,6 @@ public class HG_Core extends Thread{
 		groundWidth = width;
 		groundHeight = height;
 	}//setGround
-	
-	public int getGroundWidth()	{
-		return groundWidth;
-	}//getGroundWidht
-	
-	public int getGroundHeight()	{
-		return groundHeight;
-	}//getGroundWidht
 	
 	
 	private void getDefects()	{

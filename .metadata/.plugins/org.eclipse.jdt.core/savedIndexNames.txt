@@ -1,7 +1,15 @@
+<<<<<<< HEAD
 INDEX VERSION 1.127+C:\Users\Raffy\Desktop\Thesis\.metadata\.plugins\org.eclipse.jdt.core
 2456485536.index
+=======
+INDEX VERSION 1.127+C:\Users\Aaronic\Desktop\Thesis\.metadata\.plugins\org.eclipse.jdt.core
+1832949699.index
+>>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
 3454125809.index
+2193799835.index
+3201789801.index
 3095963708.index
+<<<<<<< HEAD
 4004133052.index
 3598813974.index
 1947431546.index
@@ -20,3 +28,21 @@ INDEX VERSION 1.127+C:\Users\Raffy\Desktop\Thesis\.metadata\.plugins\org.eclipse
 3991718231.index
 834584462.index
 1832949699.index
+=======
+2456485536.index
+1259014940.index
+1604200090.index
+1877021558.index
+4004133052.index
+2486087126.index
+2743915309.index
+3598813974.index
+1028199574.index
+2338776811.index
+1574318262.index
+3991718231.index
+1065832147.index
+828133061.index
+1947431546.index
+834584462.index
+>>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
