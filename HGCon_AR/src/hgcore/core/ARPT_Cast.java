@@ -4,7 +4,13 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import java.awt.GridLayout;
+=======
+import java.awt.Graphics2D;
+import java.awt.GridLayout;
+import java.awt.RenderingHints;
+>>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
 =======
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
@@ -87,6 +93,10 @@ public class ARPT_Cast extends JFrame implements ChangeListener, ItemListener, A
                 super.paintComponent(g);
                 BufferedImage dimg = core.getImage();
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+//                resizeB(dimg, 500, 700);
+>>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
 =======
 //                resizeB(dimg, 500, 700);
 >>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
@@ -127,10 +137,13 @@ public class ARPT_Cast extends JFrame implements ChangeListener, ItemListener, A
 	}//construct
 	
 <<<<<<< HEAD
+<<<<<<< HEAD
 //	public void actionPerformed(ActionEvent ae)	{
 //		
 //	}//actionPerformed
 =======
+=======
+>>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
 	public BufferedImage resizeB(BufferedImage img, int newW, int newH) {  
 	    int w = img.getWidth();  
 	    int h = img.getHeight();  
@@ -142,6 +155,9 @@ public class ARPT_Cast extends JFrame implements ChangeListener, ItemListener, A
 	    g.dispose();  
 	    return dimg;  
 	}  
+<<<<<<< HEAD
+>>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
+=======
 >>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
 	
 	public void actionPerformed(ActionEvent ae)	{
@@ -153,6 +169,7 @@ public class ARPT_Cast extends JFrame implements ChangeListener, ItemListener, A
 		}//if
 		else trueColorNonCVBtn.setEnabled(true);
 		
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if(src == trueColorCVBtn)	{
 			trueColorCVBtn.setEnabled(false);
@@ -166,6 +183,11 @@ public class ARPT_Cast extends JFrame implements ChangeListener, ItemListener, A
 			core.backgroundSubtraction = true;
 			core.filterCV = false;
 >>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
+=======
+		if(src == backgroundSubtractionBtn)	{
+			core.backgroundSubtraction = true;
+			core.filterCV = false;
+>>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
 			backgroundSubtractionBtn.setEnabled(false);
 		}//if
 		else	{
@@ -174,11 +196,14 @@ public class ARPT_Cast extends JFrame implements ChangeListener, ItemListener, A
 		}//else
 		
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if(src == CVBtn)	{
 			CVBtn.setEnabled(false);
 		}//if
 		else CVBtn.setEnabled(true); 
 =======
+=======
+>>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
 		// CV BUTTON!
 		if(src == CVBtn)	{
 			core.filterCV = true;
@@ -200,6 +225,9 @@ public class ARPT_Cast extends JFrame implements ChangeListener, ItemListener, A
 			core.trueColorCV = false;
 			trueColorCVBtn.setEnabled(true);
 		}//else
+<<<<<<< HEAD
+>>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
+=======
 >>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
 			
 	}//buttonStateChange
@@ -208,6 +236,7 @@ public class ARPT_Cast extends JFrame implements ChangeListener, ItemListener, A
 	    Object source = e.getItemSelectable();
 	    
 	    if (source == contourBtn) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	    	
 	    }//if
@@ -227,6 +256,8 @@ public class ARPT_Cast extends JFrame implements ChangeListener, ItemListener, A
 	    else if (source == cogBtn) {
 	    	
 =======
+=======
+>>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
 	    	core.viewContour = !core.viewContour;
 	    }//if
 	    
@@ -244,6 +275,9 @@ public class ARPT_Cast extends JFrame implements ChangeListener, ItemListener, A
 	    
 	    else if (source == cogBtn) {
 	    	core.viewCOG = !core.viewCOG;
+<<<<<<< HEAD
+>>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
+=======
 >>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
 	    }//else
 	}//itemStateChanged

@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="ASCII"?>
 <application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:advanced="http://www.eclipse.org/ui/2010/UIModel/application/ui/advanced" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_Dt9h0JNDEeSrP9lQWXbpxA" elementId="org.eclipse.e4.legacy.ide.application" contributorURI="platform:/plugin/org.eclipse.platform" selectedElement="_Dt9h0ZNDEeSrP9lQWXbpxA" bindingContexts="_Dt9h05NDEeSrP9lQWXbpxA">
 <<<<<<< HEAD
+<<<<<<< HEAD
   <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;workbench>&#xD;&#xA;&lt;mruList>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.jdt.ui.ClassFileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.ClassFileEditor&quot; name=&quot;Imgproc.class&quot; tooltip=&quot;org.opencv.imgproc.Imgproc&quot;>&#xD;&#xA;&lt;persistable org.eclipse.jdt.ui.ClassFileIdentifier=&quot;=HGCon_AR/C:\/eclipse\/Libraries\/opencv\/build\/java\/opencv-249.jar&amp;lt;org.opencv.imgproc(Imgproc.class&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.jdt.ui.ClassFileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.ClassFileEditor&quot; name=&quot;Mat.class&quot; tooltip=&quot;org.opencv.core.Mat&quot;>&#xD;&#xA;&lt;persistable org.eclipse.jdt.ui.ClassFileIdentifier=&quot;=HGCon_AR/C:\/eclipse\/Libraries\/opencv\/build\/java\/opencv-249.jar&amp;lt;org.opencv.core(Mat.class&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;ScreenCast.java&quot; tooltip=&quot;HGCon_AR/src/hgcore/core/ScreenCast.java&quot;>&#xD;&#xA;&lt;persistable path=&quot;/HGCon_AR/src/hgcore/core/ScreenCast.java&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;HG_Core.java&quot; tooltip=&quot;HGCon_AR/src/hgcore/core/HG_Core.java&quot;>&#xD;&#xA;&lt;persistable path=&quot;/HGCon_AR/src/hgcore/core/HG_Core.java&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;ARPT_Cast.java&quot; tooltip=&quot;HGCon_AR/src/hgcore/core/ARPT_Cast.java&quot;>&#xD;&#xA;&lt;persistable path=&quot;/HGCon_AR/src/hgcore/core/ARPT_Cast.java&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.wb.core.guiEditor&quot; name=&quot;TryCast.java&quot; tooltip=&quot;HGCon_AR/src/hgcore/core/TryCast.java&quot;>&#xD;&#xA;&lt;persistable path=&quot;/HGCon_AR/src/hgcore/core/TryCast.java&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.wst.xml.ui.internal.tabletree.XMLMultiPageEditorPart&quot; name=&quot;org.eclipse.wb.rcp.wbp-palette.xml&quot; tooltip=&quot;HGCon_AR/wbp-meta/org.eclipse.wb.rcp.wbp-palette.xml&quot;>&#xD;&#xA;&lt;persistable path=&quot;/HGCon_AR/wbp-meta/org.eclipse.wb.rcp.wbp-palette.xml&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;HandDetector.java&quot; tooltip=&quot;Pre-Development/src/HandDetector.java&quot;>&#xD;&#xA;&lt;persistable path=&quot;/Pre-Development/src/HandDetector.java&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.jdt.ui.ClassFileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.ClassFileEditor&quot; name=&quot;Core.class&quot; tooltip=&quot;org.opencv.core.Core&quot;>&#xD;&#xA;&lt;persistable org.eclipse.jdt.ui.ClassFileIdentifier=&quot;=HGCon_AR/C:\/eclipse\/Libraries\/opencv\/build\/java\/opencv-249.jar&amp;lt;org.opencv.core(Core.class&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;/mruList>&#xD;&#xA;&lt;/workbench>"/>
   <tags>ModelMigrationProcessor.001</tags>
   <tags>activeSchemeId:org.eclipse.ui.defaultAcceleratorConfiguration</tags>
   <children xsi:type="basic:TrimmedWindow" xmi:id="_Dt9h0ZNDEeSrP9lQWXbpxA" elementId="IDEWindow" contributorURI="platform:/plugin/org.eclipse.platform" selectedElement="_FFeuYpNDEeSrP9lQWXbpxA" label="%trimmedwindow.label.eclipseSDK" x="-1644" y="-77" width="1386" height="788">
 =======
+=======
+>>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
   <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;workbench>&#xD;&#xA;&lt;mruList>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;ARPT_Cast.java&quot; tooltip=&quot;HGCon_AR/src/hgcore/core/ARPT_Cast.java&quot;>&#xD;&#xA;&lt;persistable path=&quot;/HGCon_AR/src/hgcore/core/ARPT_Cast.java&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.jdt.ui.ClassFileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.ClassFileEditor&quot; name=&quot;Imgproc.class&quot; tooltip=&quot;org.opencv.imgproc.Imgproc&quot;>&#xD;&#xA;&lt;persistable org.eclipse.jdt.ui.ClassFileIdentifier=&quot;=HGCon_AR/C:\/eclipse\/Libraries\/opencv\/build\/java\/opencv-249.jar&amp;lt;org.opencv.imgproc(Imgproc.class&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.jdt.ui.ClassFileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.ClassFileEditor&quot; name=&quot;Mat.class&quot; tooltip=&quot;org.opencv.core.Mat&quot;>&#xD;&#xA;&lt;persistable org.eclipse.jdt.ui.ClassFileIdentifier=&quot;=HGCon_AR/C:\/eclipse\/Libraries\/opencv\/build\/java\/opencv-249.jar&amp;lt;org.opencv.core(Mat.class&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;ScreenCast.java&quot; tooltip=&quot;HGCon_AR/src/hgcore/core/ScreenCast.java&quot;>&#xD;&#xA;&lt;persistable path=&quot;/HGCon_AR/src/hgcore/core/ScreenCast.java&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;HG_Core.java&quot; tooltip=&quot;HGCon_AR/src/hgcore/core/HG_Core.java&quot;>&#xD;&#xA;&lt;persistable path=&quot;/HGCon_AR/src/hgcore/core/HG_Core.java&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.wb.core.guiEditor&quot; name=&quot;TryCast.java&quot; tooltip=&quot;HGCon_AR/src/hgcore/core/TryCast.java&quot;>&#xD;&#xA;&lt;persistable path=&quot;/HGCon_AR/src/hgcore/core/TryCast.java&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.wst.xml.ui.internal.tabletree.XMLMultiPageEditorPart&quot; name=&quot;org.eclipse.wb.rcp.wbp-palette.xml&quot; tooltip=&quot;HGCon_AR/wbp-meta/org.eclipse.wb.rcp.wbp-palette.xml&quot;>&#xD;&#xA;&lt;persistable path=&quot;/HGCon_AR/wbp-meta/org.eclipse.wb.rcp.wbp-palette.xml&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;HandDetector.java&quot; tooltip=&quot;Pre-Development/src/HandDetector.java&quot;>&#xD;&#xA;&lt;persistable path=&quot;/Pre-Development/src/HandDetector.java&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.jdt.ui.ClassFileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.ClassFileEditor&quot; name=&quot;Core.class&quot; tooltip=&quot;org.opencv.core.Core&quot;>&#xD;&#xA;&lt;persistable org.eclipse.jdt.ui.ClassFileIdentifier=&quot;=HGCon_AR/C:\/eclipse\/Libraries\/opencv\/build\/java\/opencv-249.jar&amp;lt;org.opencv.core(Core.class&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;/mruList>&#xD;&#xA;&lt;/workbench>"/>
   <tags>ModelMigrationProcessor.001</tags>
   <tags>activeSchemeId:org.eclipse.ui.defaultAcceleratorConfiguration</tags>
   <children xsi:type="basic:TrimmedWindow" xmi:id="_Dt9h0ZNDEeSrP9lQWXbpxA" elementId="IDEWindow" contributorURI="platform:/plugin/org.eclipse.platform" selectedElement="_FFeuYpNDEeSrP9lQWXbpxA" label="%trimmedwindow.label.eclipseSDK" x="0" y="0" width="1386" height="788">
+<<<<<<< HEAD
+>>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
+=======
 >>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
     <persistedState key="coolBarVisible" value="true"/>
     <persistedState key="perspectiveBarVisible" value="true"/>
@@ -139,7 +145,11 @@
     </sharedElements>
     <sharedElements xsi:type="advanced:Area" xmi:id="_Fzo04JNDEeSrP9lQWXbpxA" elementId="org.eclipse.ui.editorss" selectedElement="_Fzo04ZNDEeSrP9lQWXbpxA">
 <<<<<<< HEAD
+<<<<<<< HEAD
       <children xsi:type="basic:PartStack" xmi:id="_Fzo04ZNDEeSrP9lQWXbpxA" elementId="org.eclipse.e4.primaryDataStack" selectedElement="_UAnI4JbQEeSU_7Zp9sAOqA">
+=======
+      <children xsi:type="basic:PartStack" xmi:id="_Fzo04ZNDEeSrP9lQWXbpxA" elementId="org.eclipse.e4.primaryDataStack" selectedElement="_Y13qYJdOEeSYmZwYLfeV6w">
+>>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
 =======
       <children xsi:type="basic:PartStack" xmi:id="_Fzo04ZNDEeSrP9lQWXbpxA" elementId="org.eclipse.e4.primaryDataStack" selectedElement="_Y13qYJdOEeSYmZwYLfeV6w">
 >>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
@@ -149,8 +159,11 @@
         <tags>active</tags>
         <children xsi:type="basic:Part" xmi:id="_UAnI4JbQEeSU_7Zp9sAOqA" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="HG_Core.java" iconURI="platform:/plugin/org.eclipse.jdt.ui/icons/full/obj16/jcu_obj.gif" closeable="true">
 <<<<<<< HEAD
+<<<<<<< HEAD
           <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;HG_Core.java&quot; partName=&quot;HG_Core.java&quot; title=&quot;HG_Core.java&quot; tooltip=&quot;HGCon_AR/src/hgcore/core/HG_Core.java&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/HGCon_AR/src/hgcore/core/HG_Core.java&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;2615&quot; selectionTopPixel=&quot;1095&quot;/>&#xD;&#xA;&lt;/editor>"/>
 =======
+=======
+>>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
           <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;HG_Core.java&quot; partName=&quot;HG_Core.java&quot; title=&quot;HG_Core.java&quot; tooltip=&quot;HGCon_AR/src/hgcore/core/HG_Core.java&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/HGCon_AR/src/hgcore/core/HG_Core.java&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;7194&quot; selectionTopPixel=&quot;3015&quot;/>&#xD;&#xA;&lt;/editor>"/>
           <tags>Editor</tags>
           <tags>org.eclipse.jdt.ui.CompilationUnitEditor</tags>
@@ -158,6 +171,9 @@
         </children>
         <children xsi:type="basic:Part" xmi:id="_Y13qYJdOEeSYmZwYLfeV6w" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="ARPT_Cast.java" iconURI="platform:/plugin/org.eclipse.jdt.ui/icons/full/obj16/jcu_obj.gif" closeable="true">
           <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;ARPT_Cast.java&quot; partName=&quot;ARPT_Cast.java&quot; title=&quot;ARPT_Cast.java&quot; tooltip=&quot;HGCon_AR/src/hgcore/core/ARPT_Cast.java&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/HGCon_AR/src/hgcore/core/ARPT_Cast.java&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;3261&quot; selectionTopPixel=&quot;720&quot;/>&#xD;&#xA;&lt;/editor>"/>
+<<<<<<< HEAD
+>>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
+=======
 >>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
           <tags>Editor</tags>
           <tags>org.eclipse.jdt.ui.CompilationUnitEditor</tags>
@@ -168,10 +184,14 @@
         <children xsi:type="basic:Part" xmi:id="_UCjCkJbQEeSU_7Zp9sAOqA" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="ScreenCast.java" iconURI="platform:/plugin/org.eclipse.jdt.ui/icons/full/obj16/jcu_obj.gif" closeable="true">
           <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;ScreenCast.java&quot; partName=&quot;ScreenCast.java&quot; title=&quot;ScreenCast.java&quot; tooltip=&quot;HGCon_AR/src/hgcore/core/ScreenCast.java&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/HGCon_AR/src/hgcore/core/ScreenCast.java&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;428&quot; selectionOffset=&quot;1112&quot; selectionTopPixel=&quot;57&quot;/>&#xD;&#xA;&lt;/editor>"/>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
           <tags>Editor</tags>
           <tags>org.eclipse.jdt.ui.CompilationUnitEditor</tags>
           <tags>removeOnHide</tags>
         </children>
+<<<<<<< HEAD
         <children xsi:type="basic:Part" xmi:id="_T-YUQJbQEeSU_7Zp9sAOqA" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="ARPT_Cast.java" iconURI="platform:/plugin/org.eclipse.jdt.ui/icons/full/obj16/jcu_obj.gif" closeable="true">
           <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;ARPT_Cast.java&quot; partName=&quot;ARPT_Cast.java&quot; title=&quot;ARPT_Cast.java&quot; tooltip=&quot;HGCon_AR/src/hgcore/core/ARPT_Cast.java&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/HGCon_AR/src/hgcore/core/ARPT_Cast.java&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;5486&quot; selectionTopPixel=&quot;2142&quot;/>&#xD;&#xA;&lt;/editor>"/>
 =======
@@ -180,6 +200,8 @@
           <tags>org.eclipse.jdt.ui.CompilationUnitEditor</tags>
           <tags>removeOnHide</tags>
         </children>
+=======
+>>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
         <children xsi:type="basic:Part" xmi:id="_xduCUJcsEeSG7M4fVydTvQ" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="Mat.class" iconURI="platform:/plugin/org.eclipse.jdt.ui/icons/full/obj16/classf_obj.gif" closeable="true">
           <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.ClassFileEditor&quot; name=&quot;Mat.class&quot; partName=&quot;Mat.class&quot; title=&quot;Mat.class&quot; tooltip=&quot;org.opencv.core.Mat&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.jdt.ui.ClassFileEditorInputFactory&quot; org.eclipse.jdt.ui.ClassFileIdentifier=&quot;=HGCon_AR/C:\/eclipse\/Libraries\/opencv\/build\/java\/opencv-249.jar&amp;lt;org.opencv.core(Mat.class&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;86041&quot; selectionTopPixel=&quot;38190&quot;/>&#xD;&#xA;&lt;/editor>"/>
           <tags>Editor</tags>
@@ -310,7 +332,11 @@
       <children xsi:type="menu:ToolBar" xmi:id="_FZE_0JNDEeSrP9lQWXbpxA" elementId="org.eclipse.ui.workbench.file">
         <tags>Draggable</tags>
 <<<<<<< HEAD
+<<<<<<< HEAD
         <children xsi:type="menu:HandledToolItem" xmi:id="_FCz0VJe2EeSLk-FViOZIJQ" elementId="print" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" enabled="false" command="_DwYj35NDEeSrP9lQWXbpxA"/>
+=======
+        <children xsi:type="menu:HandledToolItem" xmi:id="_ethhoJdLEeSYmZwYLfeV6w" elementId="print" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" enabled="false" command="_DwYj35NDEeSrP9lQWXbpxA"/>
+>>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
 =======
         <children xsi:type="menu:HandledToolItem" xmi:id="_ethhoJdLEeSYmZwYLfeV6w" elementId="print" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" enabled="false" command="_DwYj35NDEeSrP9lQWXbpxA"/>
 >>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
@@ -359,7 +385,11 @@
       <children xsi:type="menu:ToolBar" xmi:id="_FZGN8JNDEeSrP9lQWXbpxA" elementId="org.eclipse.ui.workbench.navigate">
         <tags>Draggable</tags>
 <<<<<<< HEAD
+<<<<<<< HEAD
         <children xsi:type="menu:HandledToolItem" xmi:id="_FDGvQpe2EeSLk-FViOZIJQ" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_DwX8rZNDEeSrP9lQWXbpxA"/>
+=======
+        <children xsi:type="menu:HandledToolItem" xmi:id="_etqEgZdLEeSYmZwYLfeV6w" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_DwX8rZNDEeSrP9lQWXbpxA"/>
+>>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
 =======
         <children xsi:type="menu:HandledToolItem" xmi:id="_etqEgZdLEeSYmZwYLfeV6w" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_DwX8rZNDEeSrP9lQWXbpxA"/>
 >>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
@@ -400,8 +430,13 @@
       </children>
     </trimBars>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <trimBars xmi:id="_Fwh2gJNDEeSrP9lQWXbpxA" elementId="org.eclipse.ui.trim.vertical1" side="Left">
       <children xsi:type="menu:ToolControl" xmi:id="_cmn1gJZZEeSaEbp3yf-2lA" elementId="topLeft(org.eclipse.jst.j2ee.J2EEPerspective)" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.addons.swt/org.eclipse.e4.ui.workbench.addons.minmax.TrimStack">
+=======
+    <trimBars xmi:id="_Fwh2gJNDEeSrP9lQWXbpxA" elementId="org.eclipse.ui.trim.vertical1" toBeRendered="false" side="Left">
+      <children xsi:type="menu:ToolControl" xmi:id="_cmn1gJZZEeSaEbp3yf-2lA" elementId="topLeft(org.eclipse.jst.j2ee.J2EEPerspective)" toBeRendered="false" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.addons.swt/org.eclipse.e4.ui.workbench.addons.minmax.TrimStack">
+>>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
 =======
     <trimBars xmi:id="_Fwh2gJNDEeSrP9lQWXbpxA" elementId="org.eclipse.ui.trim.vertical1" toBeRendered="false" side="Left">
       <children xsi:type="menu:ToolControl" xmi:id="_cmn1gJZZEeSaEbp3yf-2lA" elementId="topLeft(org.eclipse.jst.j2ee.J2EEPerspective)" toBeRendered="false" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.addons.swt/org.eclipse.e4.ui.workbench.addons.minmax.TrimStack">
@@ -414,7 +449,11 @@
         <tags>TrimStack</tags>
       </children>
 <<<<<<< HEAD
+<<<<<<< HEAD
       <children xsi:type="menu:ToolControl" xmi:id="_cm6wcJZZEeSaEbp3yf-2lA" elementId="bottomRight(org.eclipse.jst.j2ee.J2EEPerspective)" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.addons.swt/org.eclipse.e4.ui.workbench.addons.minmax.TrimStack">
+=======
+      <children xsi:type="menu:ToolControl" xmi:id="_cm6wcJZZEeSaEbp3yf-2lA" elementId="bottomRight(org.eclipse.jst.j2ee.J2EEPerspective)" toBeRendered="false" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.addons.swt/org.eclipse.e4.ui.workbench.addons.minmax.TrimStack">
+>>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
 =======
       <children xsi:type="menu:ToolControl" xmi:id="_cm6wcJZZEeSaEbp3yf-2lA" elementId="bottomRight(org.eclipse.jst.j2ee.J2EEPerspective)" toBeRendered="false" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.addons.swt/org.eclipse.e4.ui.workbench.addons.minmax.TrimStack">
 >>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef

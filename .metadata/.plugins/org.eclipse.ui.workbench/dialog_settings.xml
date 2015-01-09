@@ -11,7 +11,11 @@
 	</section>
 	<section name="org.eclipse.ui.internal.QuickAccess">
 <<<<<<< HEAD
+<<<<<<< HEAD
 		<item value="526" key="dialogHeight"/>
+=======
+		<item value="556" key="dialogHeight"/>
+>>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
 =======
 		<item value="556" key="dialogHeight"/>
 >>>>>>> 1d20a851ee6c5e8d39eb577b14a8dc4917c70aef
