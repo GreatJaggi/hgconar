@@ -1,4 +1,4 @@
-package hgcore.core;
+
 
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
@@ -81,7 +81,7 @@ public class HG_Core extends Thread{
 	 private boolean vobCasted = false;
 	 
 	 
-	 private String fileName = "/_0cast.png";
+	 private String fileName = "/_2cast.png";
 	 ArrayList<Mat> vobCastList = new ArrayList<Mat>();
 	 
 	int castX = 0;
@@ -99,8 +99,7 @@ public class HG_Core extends Thread{
 		//temporary holder for cast objects
 		BufferedImage img = null;
 		try {
-		    img = ImageIO.read(this.getClass().getResource(fileName));
-		    //img = ImageIO.read(new File(getClass().getResource(fileName).getPath()));
+		    img = ImageIO.read(new File(getClass().getResource(fileName).getPath()));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
